@@ -1,0 +1,26 @@
+const URL = "http://localhost:3000/api/v1/users/";
+
+export const getUsers = async function ({ role, limit, page }) {
+  try {
+    const response = await fetch(
+      `${URL}?role=${role}&limit=${limit}&page=${page}`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+
+    if (response.status === 404)
+      throw new Error(`No ${role.toLowerCase() + "'s"} found!`);
+
+    if (!response.ok)
+      throw new Error(`Failed to fetch ${role.toLowerCase()} data.`);
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
