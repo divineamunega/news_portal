@@ -86,7 +86,7 @@ const Login = () => {
         {err ? <p className="w-full text-left text-red-500">{err}</p> : null}
         <div className="md:hidden">
           <p className="text-black/35">Don&apos;t have an account?</p>
-          <Link to="signup" className="border-b-2 border-black px-1">
+          <Link to="/auth/signup" className="border-b-2 border-black px-1">
             signup
           </Link>
         </div>

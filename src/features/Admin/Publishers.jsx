@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { RotatingLines } from "react-loader-spinner";
 import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 
 const Publishers = () => {
   const {
     data: tableData,
     noOfPages: totalPages,
-    numOfUsers: totalPublishers,
     page: currentPage,
     limit,
   } = useLoaderData();
@@ -13,8 +13,9 @@ const Publishers = () => {
   const [selectedLimit, setSelectedLimit] = useState(limit);
   const navigate = useNavigate();
 
-  const loading = useNavigation();
-  console.log(loading);
+  const navigation = useNavigation();
+  const loading =
+    navigation.state === "loading" || navigation.state === "submitting";
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -58,78 +59,86 @@ const Publishers = () => {
 
       {/* Table */}
       <main className="p-4">
-        <div className="b w-full overflow-auto text-nowrap">
-          <table className="w-full border-collapse border border-gray-300">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border px-4 py-2">Name</th>
-                <th className="border px-4 py-2">Email</th>
-                <th className="border px-4 py-2">Articles</th>
-                <th className="border px-4 py-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((user) => (
-                <tr key={user.id}>
-                  <td className="border px-4 py-2">{user.name}</td>
-                  <td className="border px-4 py-2">{user.email}</td>
-                  <td className="border px-4 py-2">
-                    <span className="rounded bg-yellow-100 px-2 py-1 text-yellow-800">
-                      0
-                    </span>
-                  </td>
-                  <td className="border px-4 py-2">
-                    <button className="px-2 py-1 text-blue-500 hover:underline">
-                      Edit
-                    </button>{" "}
-                    |
-                    <button className="px-2 py-1 text-red-500 hover:underline">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="mt-4 flex items-center justify-between">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className={`rounded border px-4 py-2 ${currentPage === 1 ? "cursor-not-allowed opacity-50" : ""}`}
-          >
-            Previous
-          </button>
-          <div className="flex gap-3 text-sm">
-            <p>
-              Page {currentPage} of {totalPages}
-            </p>
-            <div className="flex items-center justify-end">
-              <label htmlFor="rows-per-page" className="mr-2 text-sm">
-                Rows per page:
-              </label>
-              <select
-                id="rows-per-page"
-                value={selectedLimit}
-                onChange={handleLimitChange}
-                className="rounded border"
-              >
-                <option value="5">5</option>
-                <option value="8">8</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-              </select>
-            </div>
+        {loading ? (
+          <div className="flex h-[90vh] w-full items-center justify-center">
+            <RotatingLines />
           </div>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className={`rounded border px-4 py-2 ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : ""}`}
-          >
-            Next
-          </button>
-        </div>
+        ) : (
+          <>
+            <div className="b w-full overflow-auto text-nowrap">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border px-4 py-2">Name</th>
+                    <th className="border px-4 py-2">Email</th>
+                    <th className="border px-4 py-2">Articles</th>
+                    <th className="border px-4 py-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableData.map((user) => (
+                    <tr key={user.id}>
+                      <td className="border px-4 py-2">{user.name}</td>
+                      <td className="border px-4 py-2">{user.email}</td>
+                      <td className="border px-4 py-2">
+                        <span className="rounded bg-yellow-100 px-2 py-1 text-yellow-800">
+                          0
+                        </span>
+                      </td>
+                      <td className="border px-4 py-2">
+                        <button className="px-2 py-1 text-blue-500 hover:underline">
+                          Edit
+                        </button>{" "}
+                        |
+                        <button className="px-2 py-1 text-red-500 hover:underline">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className={`rounded border px-4 py-2 ${currentPage === 1 ? "cursor-not-allowed opacity-50" : ""}`}
+              >
+                Previous
+              </button>
+              <div className="flex gap-3 text-sm">
+                <p>
+                  Page {currentPage} of {totalPages}
+                </p>
+                <div className="flex items-center justify-end">
+                  <label htmlFor="rows-per-page" className="mr-2 text-sm">
+                    Rows per page:
+                  </label>
+                  <select
+                    id="rows-per-page"
+                    value={selectedLimit}
+                    onChange={handleLimitChange}
+                    className="rounded border"
+                  >
+                    <option value="5">5</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className={`rounded border px-4 py-2 ${currentPage === totalPages ? "cursor-not-allowed opacity-50" : ""}`}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
       </main>
     </div>
   );

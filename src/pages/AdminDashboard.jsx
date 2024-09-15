@@ -1,3 +1,4 @@
+import { RotatingLines } from "react-loader-spinner";
 import useAuth from "../features/auth/useAuth";
 import useIsLoggedIn from "../features/auth/useIsLoggedIn";
 import { Outlet } from "react-router-dom";
@@ -5,7 +6,12 @@ const AdminDashboard = function () {
   useIsLoggedIn("ADMIN");
   const { isAuthenticated, isLoading, error, user } = useAuth();
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading)
+    return (
+      <div className="flex h-[100dvh] w-[98dvw] items-center justify-center">
+        <RotatingLines width="80" height="80" />
+      </div>
+    );
 
   if (!isAuthenticated && !isLoading)
     return <div>{error?.message ? error.message : ""}</div>;

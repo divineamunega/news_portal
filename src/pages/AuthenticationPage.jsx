@@ -4,8 +4,8 @@ import { Link, Outlet } from "react-router-dom";
 const AuthenticationPage = () => {
   const [position, setPosition] = useState("");
   return (
-    <div className="flex h-screen w-screen gap-10 sm:px-10 sm:py-5">
-      <div className="hidden h-full w-1/2 flex-col items-center justify-center gap-32 rounded-xl md:flex">
+    <div className="flex h-[100dvh] w-[100dvw] gap-6 overflow-x-clip sm:w-[99dvw] sm:px-10 sm:py-5">
+      <div className="hidden h-full w-1/2 flex-col items-center justify-center gap-32 overflow-hidden rounded-xl md:flex">
         <div className="flex flex-col gap-3">
           <p className="text-center font-lora text-2xl font-bold">
             LARGEST NEWS SOURCE IN SCHOOL
