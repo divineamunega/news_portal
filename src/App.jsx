@@ -11,7 +11,8 @@ import {
 import AdminDashboard from "./pages/AdminDashboard";
 import AuthProvider from "./features/auth/Authcontext";
 import Publishers from "./features/Admin/Publishers";
-import PublisherLoader from "./features/Admin/PublisherLoader";
+import Users from "./features/Admin/Users";
+import userLoader from "./features/Admin/UserLoader";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -46,7 +47,12 @@ const App = () => {
         {
           path: "publishers",
           element: <Publishers />,
-          loader: PublisherLoader,
+          loader: userLoader("PUBLISHER"),
+        },
+        {
+          path: "users",
+          element: <Users />,
+          loader: userLoader("USER"),
         },
       ],
     },

@@ -7,7 +7,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 
-const Publishers = () => {
+const Users = () => {
   const {
     data: tableData,
     noOfPages: totalPages,
@@ -17,12 +17,6 @@ const Publishers = () => {
   } = useLoaderData();
 
   const [selectedLimit, setSelectedLimit] = useState(limit);
-  const [addPublisherBoxIsOpen, setAddPublisherBoxIsOpen] = useState(false);
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
 
   const navigation = useNavigation();
@@ -50,16 +44,6 @@ const Publishers = () => {
     navigate(`?page=1&limit=${newLimit}`, { replace: true });
   };
 
-  const handleAddPublishers = function () {};
-
-  const openModal = function () {
-    setAddPublisherBoxIsOpen(true);
-  };
-
-  const closeModal = function () {
-    setAddPublisherBoxIsOpen(false);
-  };
-
   return (
     <div className="flex-1 overflow-x-auto">
       <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b bg-white px-4">
@@ -67,14 +51,11 @@ const Publishers = () => {
           <button className="md:hidden">
             <MenuIcon className="h-6 w-6" />
           </button>
-          <h1 className="text-lg font-semibold">Publisher Management</h1>
+          <h1 className="text-lg font-semibold">User Management</h1>
         </div>
         <div className="flex items-center gap-4">
-          <button
-            className="rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100"
-            onClick={openModal}
-          >
-            Add Publisher
+          <button className="rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100">
+            Add User
           </button>
         </div>
       </header>
@@ -83,7 +64,7 @@ const Publishers = () => {
       <main className="p-4">
         {loading ? (
           <div className="flex h-[90vh] w-full items-center justify-center">
-            <RotatingLines strokeColor="black" />
+            <RotatingLines />
           </div>
         ) : tableData ? (
           <>
@@ -93,7 +74,6 @@ const Publishers = () => {
                   <tr>
                     <th className="border px-4 py-2">Name</th>
                     <th className="border px-4 py-2">Email</th>
-                    <th className="border px-4 py-2">Articles</th>
                     <th className="border px-4 py-2">Actions</th>
                   </tr>
                 </thead>
@@ -102,11 +82,6 @@ const Publishers = () => {
                     <tr key={user.id}>
                       <td className="border px-4 py-2">{user.name}</td>
                       <td className="border px-4 py-2">{user.email}</td>
-                      <td className="border px-4 py-2">
-                        <span className="rounded bg-yellow-100 px-2 py-1 text-yellow-800">
-                          0
-                        </span>
-                      </td>
                       <td className="border px-4 py-2">
                         <button className="px-2 py-1 text-blue-500 hover:underline">
                           Edit
@@ -171,56 +146,11 @@ const Publishers = () => {
           </div>
         )}
       </main>
-
-      {addPublisherBoxIsOpen && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
-          <div className="w-[500px] scale-100 transform rounded-lg bg-white p-6 shadow-lg transition-transform duration-500">
-            <h2 className="mb-4 text-xl font-semibold">Add New Publisher</h2>
-            <input
-              type="text"
-              placeholder="Publisher Name"
-              className="mb-4 w-full rounded-md border border-gray-300 p-2"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Publisher Email"
-              className="mb-4 w-full rounded-md border border-gray-300 p-2"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-
-            <input
-              type="password"
-              placeholder="Password"
-              className="mb-4 w-full rounded-md border border-gray-300 p-2"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={closeModal}
-                className="rounded bg-gray-300 px-4 py-2 hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={closeModal}
-                className="rounded border-2 border-black bg-black px-4 py-2 text-white hover:bg-white hover:text-black"
-              >
-                Add Publisher
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-export default Publishers;
+export default Users;
 
 function MenuIcon(props) {
   return (

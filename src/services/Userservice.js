@@ -21,6 +21,6 @@ export const getUsers = async function ({ role, limit, page }) {
     return data;
   } catch (err) {
     console.log(err);
-    return [];
+    return { err };
   }
 };
