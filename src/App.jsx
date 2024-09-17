@@ -56,6 +56,10 @@ const App = () => {
         },
       ],
     },
+
+    {
+      path: "publishers",
+    },
   ]);
 
   return (

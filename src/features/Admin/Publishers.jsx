@@ -6,6 +6,7 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router-dom";
+import { registerPublisher } from "../../services/Authservice";
 
 const Publishers = () => {
   const {
@@ -22,6 +23,8 @@ const Publishers = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [modalError, setModalError] = useState("");
+  const [isAddPublisherLoading, setIsAddPublisherLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,7 +53,24 @@ const Publishers = () => {
     navigate(`?page=1&limit=${newLimit}`, { replace: true });
   };
 
-  const handleAddPublishers = function () {};
+  const handleAddPublishers = async function () {
+    setIsAddPublisherLoading(true);
+    setModalError("");
+    if (!email || !password || !name) {
+      setModalError("Please fill all fields");
+      return;
+    }
+
+    try {
+      await registerPublisher({ name, email, password });
+      setAddPublisherBoxIsOpen(false);
+      navigate("");
+    } catch (err) {
+      setModalError(err.message);
+    } finally {
+      setIsAddPublisherLoading(false);
+    }
+  };
 
   const openModal = function () {
     setAddPublisherBoxIsOpen(true);
@@ -199,6 +219,7 @@ const Publishers = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
+            {modalError !== "" && <p className="text-red-500">{modalError}</p>}
             <div className="flex justify-end gap-2">
               <button
                 onClick={closeModal}
@@ -207,10 +228,17 @@ const Publishers = () => {
                 Cancel
               </button>
               <button
-                onClick={closeModal}
-                className="rounded border-2 border-black bg-black px-4 py-2 text-white hover:bg-white hover:text-black"
+                onClick={handleAddPublishers}
+                className={`flex items-center gap-2 rounded border-2 border-black bg-black px-4 py-2 text-white hover:bg-white hover:text-black ${isAddPublisherLoading && "cursor-wait bg-black/90 hover:bg-black/90 hover:text-white"}`}
               >
-                Add Publisher
+                Add Publisher{" "}
+                {isAddPublisherLoading && (
+                  <RotatingLines
+                    strokeColor="white"
+                    width="20px"
+                    height="20px"
+                  />
+                )}
               </button>
             </div>
           </div>

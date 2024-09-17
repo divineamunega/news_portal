@@ -44,7 +44,7 @@ export async function validateSignup(name, email, password) {
     const data = await res.json();
     return data;
   } catch (err) {
-    throw new Error("Network Error. Please Connect to the internet.");
+    throw new Error(err);
   }
 }
 
@@ -65,4 +65,24 @@ export const checkAuthStatus = async (role) => {
   if (data.status !== "success") return false;
 
   return response.ok;
+};
+
+export const registerPublisher = async function ({ name, email, password }) {
+  const object = { name, email, password };
+  console.log(object);
+
+  const response = await fetch(`${URL}auth/signupPublisher`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(object),
+  });
+
+  const data = await response.json();
+
+  if (data.status === "fail") throw new Error(data.message);
+
+  return data;
 };
