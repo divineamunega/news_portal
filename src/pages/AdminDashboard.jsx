@@ -9,7 +9,7 @@ const AdminDashboard = function () {
   if (isLoading)
     return (
       <div className="flex h-[100dvh] w-[98dvw] items-center justify-center">
-        <RotatingLines width="80" height="80" />
+        <RotatingLines width="80" height="80" strokeColor="black" />
       </div>
     );
 

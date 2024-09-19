@@ -1,6 +1,7 @@
 import { redirect } from "react-router-dom";
 import { loginAPI } from "../../../services/Authservice";
-const action = async function ({ params, request }) {
+
+const action = async function ({ request }) {
   const formData = await request.formData();
   const { email, password } = Object.fromEntries(formData);
 
@@ -11,6 +12,10 @@ const action = async function ({ params, request }) {
 
     if (data.data.user.role === "ADMIN") {
       return redirect("/admin");
+    }
+
+    if (data.data.user.role === "PUBLISHER") {
+      return redirect("/publishers");
     }
   } catch (err) {
     return { err: err.message.replaceAll("Error:", "").trim() };

@@ -58,7 +58,8 @@ export const checkAuthStatus = async (role) => {
   const data = await response.json();
 
   if (data.status === "success") {
-    if (data.data.role !== role) throw new Error("You can't access this page.");
+    if (data.data.role !== role && data.data.role !== "ADMIN")
+      throw new Error("You can't access this page.");
 
     return { user: data.data };
   }

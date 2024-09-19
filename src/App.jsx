@@ -13,6 +13,8 @@ import AuthProvider from "./features/auth/Authcontext";
 import Publishers from "./features/Admin/Publishers";
 import Users from "./features/Admin/Users";
 import userLoader from "./features/Admin/UserLoader";
+import PublisherDashboard from "./pages/PublisherDashboard";
+import News from "./features/news/News";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -59,6 +61,14 @@ const App = () => {
 
     {
       path: "publishers",
+      element: <PublisherDashboard />,
+      children: [
+        { path: "", element: <Navigate to="/publishers/news" /> },
+        {
+          path: "news",
+          element: <News />,
+        },
+      ],
     },
   ]);
 
