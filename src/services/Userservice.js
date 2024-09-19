@@ -1,4 +1,6 @@
-const URL = "http://localhost:3000/api/v1/users/";
+import BASE_URL from "../ BASE_URL";
+
+const URL = `${BASE_URL}users/`;
 
 export const getUsers = async function ({ role, limit, page }) {
   try {

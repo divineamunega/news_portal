@@ -15,6 +15,7 @@ import Users from "./features/Admin/Users";
 import userLoader from "./features/Admin/UserLoader";
 import PublisherDashboard from "./pages/PublisherDashboard";
 import News from "./features/news/News";
+import newsLoader from "./features/news/newsloader";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -67,6 +68,7 @@ const App = () => {
         {
           path: "news",
           element: <News />,
+          loader: newsLoader,
         },
       ],
     },
@@ -74,7 +76,7 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </AuthProvider>
   );
 };

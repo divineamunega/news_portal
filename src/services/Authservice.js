@@ -1,4 +1,6 @@
-const URL = "http://localhost:3000/api/v1/";
+import BASE_URL from "../ BASE_URL";
+
+const URL = BASE_URL;
 
 export async function loginAPI(email, password) {
   try {

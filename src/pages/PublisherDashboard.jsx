@@ -32,7 +32,7 @@ const PublisherDashboard = () => {
         </div>
         <nav className="flex flex-col gap-2">
           <NavLink
-            to="users"
+            to="news"
             className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900"
           >
             <IoBookOutline className="h-5 w-5" />
