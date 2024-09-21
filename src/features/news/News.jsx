@@ -5,7 +5,7 @@ const News = () => {
   console.log(data);
 
   return (
-    <main className="flex-1 p-6">
+    <main className="h-full w-full flex-1 overflow-y-scroll p-6">
       <h1 className="mb-6 text-3xl font-bold">News Articles</h1>
 
       <div className="grid gap-6">
@@ -71,8 +71,8 @@ const News = () => {
                     Draft
                   </span>
                 )}
-                <a href="#" className="text-sm text-blue-600">
-                  Edit
+                <a href="#" className="text-sm text-red-600">
+                  Delete
                 </a>
               </div>
             </div>

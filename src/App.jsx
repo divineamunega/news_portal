@@ -16,6 +16,8 @@ import userLoader from "./features/Admin/UserLoader";
 import PublisherDashboard from "./pages/PublisherDashboard";
 import News from "./features/news/News";
 import newsLoader from "./features/news/newsloader";
+import NewArticle from "./features/news/NewArticle";
+import addNewArticleAction from "./features/news/addNewArticleAction";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -64,11 +66,19 @@ const App = () => {
       path: "publishers",
       element: <PublisherDashboard />,
       children: [
-        { path: "", element: <Navigate to="/publishers/news" /> },
+        {
+          path: "",
+          element: <Navigate to="/publishers/news" replace={true} />,
+        },
         {
           path: "news",
           element: <News />,
           loader: newsLoader,
+        },
+        {
+          path: "add-new-article",
+          element: <NewArticle />,
+          action: addNewArticleAction,
         },
       ],
     },

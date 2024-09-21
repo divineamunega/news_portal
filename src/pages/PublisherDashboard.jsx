@@ -21,7 +21,7 @@ const PublisherDashboard = () => {
     return <div>{error?.message ? error.message : ""}</div>;
 
   return (
-    <div className="flex min-h-screen w-full overflow-x-hidden">
+    <div className="flex h-[100dvh] min-h-screen w-full overflow-x-hidden">
       {/* Sidebar */}
       <aside className="hidden w-64 flex-col border-r bg-gray-100 p-4 md:flex">
         <div className="mb-6 flex flex-col gap-4">
@@ -33,23 +33,38 @@ const PublisherDashboard = () => {
         <nav className="flex flex-col gap-2">
           <NavLink
             to="news"
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900"
+            className={({ isActive }) =>
+              [
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900",
+                isActive ? "bg-gray-200 text-gray-900" : "",
+              ].join(" ")
+            }
           >
             <IoBookOutline className="h-5 w-5" />
             News
           </NavLink>
 
           <NavLink
-            to=""
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900 active:bg-gray-200"
+            to="add-new-article"
+            className={({ isActive }) =>
+              [
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900",
+                isActive ? "bg-gray-200 text-gray-900" : "",
+              ].join(" ")
+            }
           >
             <FaPlus className="h-5 w-5" />
             Add new Article
           </NavLink>
 
           <NavLink
-            to=""
-            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900 active:bg-gray-200"
+            to="drafts"
+            className={({ isActive }) =>
+              [
+                "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900",
+                isActive ? "bg-gray-200 text-gray-900" : "",
+              ].join(" ")
+            }
           >
             <MdOutlineBookmarks className="h-5 w-5" />
             Drafts
@@ -57,7 +72,9 @@ const PublisherDashboard = () => {
         </nav>
       </aside>
 
-      <Outlet />
+      <div className="overflow-scrol h-full w-full">
+        <Outlet />
+      </div>
     </div>
   );
 };

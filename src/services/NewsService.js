@@ -12,4 +12,15 @@ const getNews = async function () {
   return data;
 };
 
-export { getNews };
+const publishNews = async function (object) {
+  const res = await fetch(`${URL}`, {
+    method: "POST",
+    credentials: "include",
+    body: object,
+  });
+  const data = await res.json();
+
+  console.log(data);
+  return data;
+};
+export { getNews, publishNews };
