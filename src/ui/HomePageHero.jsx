@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, Suspense } from "react";
 import useInViewport from "../hooks/useInViewport";
-import React, { Suspense } from "react";
+import React from "react";
 
 // Lazy load the Trends component
 const Trends = React.lazy(() => import("./Trends"));
@@ -31,18 +31,11 @@ const HomePageHero = () => {
 
     window.addEventListener("resize", handleResize);
 
-    console.log(isInViewPort ? "IN VIEWPORT" : "NOT IN VIEWPORT");
-
     if (!isSmallScreen) {
-      console.log("NOT SMALL SCREEN OR NOT IN VIEWPORT");
-
       ref.current.forEach((grid) => {
-        if (grid) {
-          grid.style.transform = "";
-        }
+        if (grid) grid.style.transform = "";
       });
-
-      return; // Exit the effect early if conditions are not met
+      return;
     }
 
     ref.current.forEach((grid, i) => {
@@ -62,15 +55,13 @@ const HomePageHero = () => {
         counterRef.current === ref.current.length - 1
           ? 0
           : counterRef.current + 1;
-
-      console.log("SWIPE");
     }, duration);
 
     return () => {
       window.removeEventListener("resize", handleResize);
       clearInterval(interval);
     };
-  }, [ref, isSmallScreen, isInViewPort]);
+  }, [isSmallScreen, isInViewPort]);
 
   return (
     <div className="font-lora font-bold">
@@ -82,93 +73,61 @@ const HomePageHero = () => {
         className="no-scrollbar relative h-[14rem] gap-5 overflow-x-auto overflow-y-clip px-5 pt-5 md:h-[23rem] md:px-8 md:pt-5 lg:grid lg:h-auto lg:grid-cols-4 lg:grid-rows-2 lg:px-24"
         ref={viewPortRef}
       >
-        <div className={`${gridStyle} lg:col-span-2`} ref={pushRef}>
-          <div className="relative z-40 h-full w-full">
-            <img
-              src="/homepic.jpg"
-              className="top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
-              alt="Ajayi Crowther University Celebrates 20 Years"
-            />
-            <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 lg:group-hover:bg-black/60">
-              <div className="mt-auto">
-                <p className={newsTypeStyle}>NEWS</p>
-                <h3 className={headerStyle}>
-                  Ajayi Crowther University Celebrates 20 Years of Excellence
-                </h3>
+        {/* Article Grid */}
+        {[
+          {
+            img: "/homepic.jpg",
+            newsType: "NEWS",
+            title:
+              "Ajayi Crowther University Celebrates 20 Years of Excellence",
+            alt: "ACU 20 Years",
+          },
+          {
+            img: "/homepic3.jpg",
+            newsType: "Campus Life",
+            title: "We eat good at ACU",
+            alt: "Campus Life at ACU",
+          },
+          {
+            img: "/homepic4.jpg",
+            newsType: "Campus Life",
+            title: "Nature Walks and Study Spots on Campus",
+            alt: "Nature Walks",
+          },
+          {
+            img: "/homepic5.jpg",
+            newsType: "Events",
+            title: "Upcoming Seminar: The Future of Cybersecurity",
+            alt: "Cybersecurity Seminar",
+          },
+          {
+            img: "/homepic6.jpg",
+            newsType: "Workshops",
+            title: "Blockchain Bootcamp this Summer",
+            alt: "Blockchain Bootcamp",
+          },
+        ].map(({ img, newsType, title, alt }, i) => (
+          <div
+            className={`${gridStyle} lg:col-span-${i === 0 ? 2 : 1}`}
+            key={i}
+            ref={pushRef}
+          >
+            <div className="relative z-40 h-full w-full">
+              <img
+                src={img}
+                loading="lazy" // Lazy loading images
+                className="h-full w-full object-cover duration-500 group-hover:scale-110"
+                alt={alt}
+              />
+              <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 lg:group-hover:bg-black/60">
+                <div className="mt-auto">
+                  <p className={newsTypeStyle}>{newsType}</p>
+                  <h3 className={headerStyle}>{title}</h3>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className={`${gridStyle} col-span-1`} ref={pushRef}>
-          <div className="relative h-full w-full">
-            <img
-              src="/homepic3.jpg"
-              className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
-              alt="We eat good at ACU"
-            />
-            <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 group-hover:bg-black/60">
-              <div className="mt-auto">
-                <p className={newsTypeStyle}>Campus Life</p>
-                <h3 className={headerStyle}>We eat good at ACU</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={gridStyle} ref={pushRef}>
-          <div className="relative h-full w-full">
-            <img
-              src="/homepic4.jpg"
-              className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
-              alt="Nature Walks and Study Spots"
-            />
-            <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 group-hover:bg-black/60">
-              <div className="mt-auto">
-                <p className={newsTypeStyle}>Campus Life</p>
-                <h3 className={headerStyle}>
-                  Nature Walks and Study Spots: The Best Places to Relax on
-                  Campus
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={`${gridStyle} col-span-2`} ref={pushRef}>
-          <div className="relative h-full w-full">
-            <img
-              src="/homepic5.jpg"
-              className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
-              alt="Upcoming Seminar"
-            />
-            <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 group-hover:bg-black/60">
-              <div className="mt-auto">
-                <p className={newsTypeStyle}>Events</p>
-                <h3 className={headerStyle}>
-                  Upcoming Seminar: The Future of Cybersecurity in a Digital
-                  World
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className={`${gridStyle} col-span-2`} ref={pushRef}>
-          <div className="relative h-full w-full">
-            <img
-              src="/homepic6.jpg"
-              className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
-              alt="Blockchain Bootcamp"
-            />
-            <div className="absolute top-0 flex h-full w-full bg-black/30 px-5 pb-5 duration-500 group-hover:bg-black/60">
-              <div className="mt-auto">
-                <p className={newsTypeStyle}>Workshops</p>
-                <h3 className={headerStyle}>Blockchain Bootcamp this Summer</h3>
-              </div>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
