@@ -1,6 +1,5 @@
 import Login from "./features/auth/login/Login";
 import AuthenticationPage from "./pages/AuthenticationPage";
-import HomePage from "./pages/HomePage";
 import Signup from "./features/auth/Signup";
 import loginAction from "./features/auth/login/loginaction";
 import {
@@ -18,12 +17,19 @@ import News from "./features/news/News";
 import newsLoader from "./features/news/newsloader";
 import NewArticle from "./features/news/NewArticle";
 import addNewArticleAction from "./features/news/addNewArticleAction";
+import { lazy, Suspense } from "react";
 
+const HomePage = lazy(() => import("./pages/HomePage"));
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage />,
+
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <HomePage />,
+        </Suspense>
+      ),
     },
 
     {
