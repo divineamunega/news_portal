@@ -2,7 +2,7 @@ import { Form, useActionData, useNavigation } from "react-router-dom";
 import Editor from "./Editor";
 import ImageSelect from "./ImageSelect";
 import Select from "./Select";
-import { SnackbarProvider, enqueueSnackbar } from "notistack";
+import { enqueueSnackbar } from "notistack";
 import { useEffect } from "react";
 
 const NewArticle = () => {
@@ -17,7 +17,6 @@ const NewArticle = () => {
 
   return (
     <div className="h-full w-full overflow-y-scroll rounded-lg bg-white p-6 shadow-lg">
-      <SnackbarProvider maxSnack={1} />
       <h1 className="mb-4 text-2xl font-bold">Add New Article</h1>
       <Form method="POST" encType="multipart/form-data">
         <div className="space-y-6">

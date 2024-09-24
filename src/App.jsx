@@ -1,6 +1,6 @@
 import Login from "./features/auth/login/Login";
 import AuthenticationPage from "./pages/AuthenticationPage";
-import Signup from "./features/auth/Signup";
+import Signup from "./features/auth/signup/Signup";
 import loginAction from "./features/auth/login/loginaction";
 import {
   createBrowserRouter,
@@ -13,11 +13,13 @@ import Publishers from "./features/Admin/Publishers";
 import Users from "./features/Admin/Users";
 import userLoader from "./features/Admin/UserLoader";
 import PublisherDashboard from "./pages/PublisherDashboard";
-import News from "./features/news/News";
-import newsLoader from "./features/news/newsloader";
-import NewArticle from "./features/news/NewArticle";
-import addNewArticleAction from "./features/news/addNewArticleAction";
+import News from "./features/publishers/News";
+import newsLoader from "./features/publishers/newsloader";
+import NewArticle from "./features/publishers/NewArticle";
+import addNewArticleAction from "./features/publishers/addNewArticleAction";
 import { lazy, Suspense } from "react";
+import signupAction from "./features/auth/signup/signupAction";
+import { SnackbarProvider } from "notistack";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const App = () => {
@@ -45,6 +47,7 @@ const App = () => {
         {
           path: "signup",
           element: <Signup />,
+          action: signupAction,
         },
       ],
     },
@@ -92,7 +95,10 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+      <>
+        <SnackbarProvider maxSnack={2} />
+        <RouterProvider router={router} />
+      </>
     </AuthProvider>
   );
 };

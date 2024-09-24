@@ -5,8 +5,6 @@ const URL = BASE_URL;
 export async function loginAPI(email, password) {
   try {
     const object = { email, password };
-    console.log(object);
-
     const res = await fetch(`${URL}auth/login`, {
       method: "POST",
       body: JSON.stringify(object),
@@ -32,7 +30,7 @@ export async function loginAPI(email, password) {
   }
 }
 
-export async function validateSignup(name, email, password) {
+export async function signupAPI(name, email, password) {
   try {
     const object = { name, email, password };
     const res = await fetch(`${URL}auth/signup`, {
