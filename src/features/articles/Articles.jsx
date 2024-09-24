@@ -1,4 +1,4 @@
-import { FaComments, FaHeart, FaRegHeart } from "react-icons/fa6";
+import { FaComments, FaRegHeart } from "react-icons/fa6";
 import { useLoaderData } from "react-router-dom";
 
 const Articles = () => {
