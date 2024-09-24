@@ -23,4 +23,12 @@ const publishNews = async function (object) {
   console.log(data);
   return data;
 };
-export { getNews, publishNews };
+
+const getNewsById = async function (id) {
+  const res = await fetch(`${URL}/${id}`);
+
+  const data = await res.json();
+
+  return data;
+};
+export { getNews, publishNews, getNewsById };

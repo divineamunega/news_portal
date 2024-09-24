@@ -47,7 +47,10 @@ const News = () => {
                 className="mr-4 h-24 w-24 rounded-lg object-cover"
               />
               <div className="flex-1">
-                <Link className="text-xl font-semibold" to={`/news/${news.id}`}>
+                <Link
+                  className="text-xl font-semibold"
+                  to={`/articles/${news.id}`}
+                >
                   {news.title}
                 </Link>
                 <p className="text-sm text-gray-500">{news.description}</p>

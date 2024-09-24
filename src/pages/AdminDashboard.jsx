@@ -2,6 +2,7 @@ import { RotatingLines } from "react-loader-spinner";
 import useAuth from "../features/auth/useAuth";
 import useIsLoggedIn from "../features/auth/useIsLoggedIn";
 import { Link, Outlet } from "react-router-dom";
+import { BiBook } from "react-icons/bi";
 const AdminDashboard = function () {
   useIsLoggedIn("ADMIN");
   const { isAuthenticated, isLoading, error, user } = useAuth();
@@ -41,6 +42,13 @@ const AdminDashboard = function () {
           >
             <UserIcon className="h-5 w-5" />
             User Management
+          </Link>
+          <Link
+            to="/publishers"
+            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900"
+          >
+            <BiBook className="h-5 w-5" />
+            News Management
           </Link>
         </nav>
       </aside>

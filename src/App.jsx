@@ -20,6 +20,9 @@ import addNewArticleAction from "./features/publishers/addNewArticleAction";
 import { lazy, Suspense } from "react";
 import signupAction from "./features/auth/signup/signupAction";
 import { SnackbarProvider } from "notistack";
+import ArticlePage from "./features/articles/ArticlesPage";
+import articleloader from "./features/articles/articleloader";
+import Articles from "./features/articles/Articles";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const App = () => {
@@ -88,6 +91,18 @@ const App = () => {
           path: "add-new-article",
           element: <NewArticle />,
           action: addNewArticleAction,
+        },
+      ],
+    },
+
+    {
+      path: "articles",
+      element: <ArticlePage />,
+      children: [
+        {
+          path: ":id",
+          element: <Articles />,
+          loader: articleloader,
         },
       ],
     },
