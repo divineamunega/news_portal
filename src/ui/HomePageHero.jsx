@@ -74,9 +74,7 @@ const HomePageHero = () => {
 
   return (
     <div className="font-lora font-bold">
-      <Suspense fallback={<div>Loading...</div>}>
-        <Trends />
-      </Suspense>
+      <Trends />
 
       <div
         className="no-scrollbar relative h-[14rem] gap-5 overflow-x-auto overflow-y-clip px-5 pt-5 md:h-[23rem] md:px-8 md:pt-5 lg:grid lg:h-auto lg:grid-cols-4 lg:grid-rows-2 lg:px-24"
@@ -85,7 +83,7 @@ const HomePageHero = () => {
         <div className={`${gridStyle} lg:col-span-2`} ref={pushRef}>
           <div className="relative z-40 h-full w-full">
             <img
-            loading="la"
+              loading="la"
               src="/homepic.jpg"
               className="top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
               alt="Ajayi Crowther University Celebrates 20 Years"
@@ -104,7 +102,7 @@ const HomePageHero = () => {
         <div className={`${gridStyle} col-span-1`} ref={pushRef}>
           <div className="relative h-full w-full">
             <img
-            loading="la"
+              loading="la"
               src="/homepic3.jpg"
               className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
               alt="We eat good at ACU"
@@ -121,7 +119,7 @@ const HomePageHero = () => {
         <div className={gridStyle} ref={pushRef}>
           <div className="relative h-full w-full">
             <img
-            loading="la"
+              loading="la"
               src="/homepic4.jpg"
               className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
               alt="Nature Walks and Study Spots"
@@ -141,7 +139,7 @@ const HomePageHero = () => {
         <div className={`${gridStyle} col-span-2`} ref={pushRef}>
           <div className="relative h-full w-full">
             <img
-            loading="la"
+              loading="la"
               src="/homepic5.jpg"
               className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
               alt="Upcoming Seminar"
@@ -161,7 +159,7 @@ const HomePageHero = () => {
         <div className={`${gridStyle} col-span-2`} ref={pushRef}>
           <div className="relative h-full w-full">
             <img
-            loading="la"
+              loading="la"
               src="/homepic6.jpg"
               className="absolute top-0 h-full w-full object-cover duration-500 group-hover:scale-110"
               alt="Blockchain Bootcamp"
