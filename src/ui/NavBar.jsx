@@ -167,7 +167,7 @@ const NavBar = () => {
       >
         <h2 className="text-center text-3xl font-extrabold italic">{title}</h2>
         <Link
-          to="/"
+          to="/auth"
           className="mx-auto mt-5 h-fit w-fit rounded-md bg-darkCyan px-8 py-3 text-antiFlashWhite"
         >
           Sign in

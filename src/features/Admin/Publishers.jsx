@@ -87,11 +87,13 @@ const Publishers = () => {
           <button className="md:hidden">
             <MenuIcon className="h-6 w-6" />
           </button>
-          <h1 className="text-lg font-semibold">Publisher Management</h1>
+          <h1 className="text-xs font-semibold sm:text-sm md:text-lg">
+            Publisher Management
+          </h1>
         </div>
         <div className="flex items-center gap-4">
           <button
-            className="rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100"
+            className="rounded-md border border-gray-300 px-4 py-2 text-sm hover:bg-gray-100 md:text-lg"
             onClick={openModal}
           >
             Add Publisher
