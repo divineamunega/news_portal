@@ -15,7 +15,7 @@ const News = () => {
               You have not created any articles{" "}
             </p>
             <Link
-              to="add-new-article"
+              to="/publishers/add-new-article"
               className="border-2 border-black bg-black px-4 py-3 text-white transition-colors duration-500 hover:bg-white hover:text-black"
             >
               Create One
@@ -27,7 +27,7 @@ const News = () => {
           <div className="flex h-[70vh] flex-col items-center justify-center gap-3">
             <p className="font-roboto text-lg">{data.message}</p>
             <Link
-              to=""
+              to="/publishers/news"
               className="border-2 border-black bg-black px-4 py-3 text-white transition-colors duration-500 hover:bg-white hover:text-black"
             >
               Try Again
