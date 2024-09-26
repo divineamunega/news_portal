@@ -7,6 +7,8 @@ import {
   useNavigation,
 } from "react-router-dom";
 import { registerPublisher } from "../../services/Authservice";
+import DeleteUser from "./DeleteUser";
+import EditUser from "./EditUser";
 
 const Publishers = () => {
   const {
@@ -31,6 +33,9 @@ const Publishers = () => {
   const navigation = useNavigation();
   const loading =
     navigation.state === "loading" || navigation.state === "submitting";
+
+  const [deleteId, setDeleteId] = useState("");
+  const [editId, setEditId] = useState("");
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -130,11 +135,17 @@ const Publishers = () => {
                         </span>
                       </td>
                       <td className="border px-4 py-2">
-                        <button className="px-2 py-1 text-blue-500 hover:underline">
+                        <button
+                          className="px-2 py-1 text-blue-500 hover:underline"
+                          onClick={() => setEditId(user.id)}
+                        >
                           Edit
                         </button>{" "}
                         |
-                        <button className="px-2 py-1 text-red-500 hover:underline">
+                        <button
+                          className="px-2 py-1 text-red-500 hover:underline"
+                          onClick={() => setDeleteId(user.id)}
+                        >
                           Delete
                         </button>
                       </td>
@@ -245,6 +256,11 @@ const Publishers = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {deleteId !== "" && <DeleteUser id={deleteId} setId={setDeleteId} />}
+      {editId !== "" && (
+        <EditUser id={editId} setId={setEditId} type="PUBLISHER" />
       )}
     </div>
   );
