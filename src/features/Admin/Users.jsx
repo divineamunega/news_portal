@@ -146,9 +146,13 @@ const Users = () => {
               <p>{err.message}</p>
               <button
                 className="bg-black px-3 py-2 text-center text-white"
-                onClick={() => {
+                onClick={async () => {
                   if (navigator.share) {
-                    navigator.share();
+                    await navigator.share({
+                      title: document.title,
+                      text: "Check out this cool site!",
+                      url: window.location.href,
+                    });
                   } else {
                     console.warn("Web Share API not supported on this browser");
                   }
