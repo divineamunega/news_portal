@@ -14,22 +14,25 @@ const EditUser = ({ id, setId, type }) => {
   const editUser = async function () {
     try {
       setIsloading(true);
-      const res = await fetch(`${BASE_URL}users/${id}`, {
-        method: "PATCH",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${BASE_URL}users/${id}?type=${type.toLowerCase()}`,
+        {
+          method: "PATCH",
+          credentials: "include",
+        },
+      );
 
       if (!res.ok) throw new Error("An unexptected error occured, Try again");
 
       setIsloading(false);
       setId("");
-      enqueueSnackbar(message);
+      enqueueSnackbar({ message, variant: "success" });
 
       setTimeout(() => {
         navigate("");
       }, 2000);
     } catch (err) {
-      enqueueSnackbar(err.message);
+      enqueueSnackbar({ message: err.message, variant: "error" });
       setIsloading(false);
     }
   };
