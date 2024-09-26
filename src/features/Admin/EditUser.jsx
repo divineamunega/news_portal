@@ -40,7 +40,7 @@ const EditUser = ({ id, setId, type }) => {
   return (
     <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
       <div className="w-[500px] scale-100 transform rounded-lg bg-white p-6 shadow-lg transition-transform duration-500">
-        <h2 className="mb-4 text-xl font-semibold">Delete User?</h2>
+        <h2 className="mb-4 text-xl font-semibold">Edit User?</h2>
         <p className="pb-5">
           Do you want to change this{" "}
           {type === "USER" ? "user to a publisher" : "publisher to a user"}?

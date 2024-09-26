@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import {
-  Link,
-  useLoaderData,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import { registerPublisher } from "../../services/Authservice";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
@@ -194,12 +189,17 @@ const Publishers = () => {
             </div>
           </>
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="w-[80%] rounded-lg px-2 py-8 shadow-lg sm:w-[400px]">
-              <p>Error: {err.message}</p>
-              <div>
-                <Link className="text-blue-500">Click here</Link> to reload
-              </div>
+          <div className="flex h-[80vh] w-full items-center justify-center px-3">
+            <div className="flex w-[80%] flex-col items-center gap-3 rounded-lg px-2 py-8 sm:w-[400px]">
+              <p>{err.message}</p>
+              <button
+                onClick={() => {
+                  setAddPublisherBoxIsOpen(true);
+                }}
+                className="bg-black px-3 py-2 text-center text-white"
+              >
+                Add Publisher
+              </button>
             </div>
           </div>
         )}

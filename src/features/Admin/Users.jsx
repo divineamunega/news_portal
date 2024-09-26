@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import {
-  Link,
-  useLoaderData,
-  useNavigate,
-  useNavigation,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
+import DeleteUser from "./DeleteUser";
+import EditUser from "./EditUser";
 
 const Users = () => {
   const {
@@ -18,6 +15,8 @@ const Users = () => {
 
   const [selectedLimit, setSelectedLimit] = useState(limit);
   const navigate = useNavigate();
+  const [deleteId, setDeleteId] = useState("");
+  const [editId, setEditId] = useState("");
 
   const navigation = useNavigation();
   const loading =
@@ -64,7 +63,7 @@ const Users = () => {
       <main className="p-4">
         {loading ? (
           <div className="flex h-[90vh] w-full items-center justify-center">
-            <RotatingLines />
+            <RotatingLines strokeColor="black" />
           </div>
         ) : tableData ? (
           <>
@@ -83,11 +82,17 @@ const Users = () => {
                       <td className="border px-4 py-2">{user.name}</td>
                       <td className="border px-4 py-2">{user.email}</td>
                       <td className="border px-4 py-2">
-                        <button className="px-2 py-1 text-blue-500 hover:underline">
+                        <button
+                          className="px-2 py-1 text-blue-500 hover:underline"
+                          onClick={() => setEditId(user.id)}
+                        >
                           Edit
                         </button>{" "}
                         |
-                        <button className="px-2 py-1 text-red-500 hover:underline">
+                        <button
+                          className="px-2 py-1 text-red-500 hover:underline"
+                          onClick={() => setDeleteId(user.id)}
+                        >
                           Delete
                         </button>
                       </td>
@@ -136,16 +141,28 @@ const Users = () => {
             </div>
           </>
         ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="w-[80%] rounded-lg px-2 py-8 shadow-lg sm:w-[400px]">
-              <p>Error: {err.message}</p>
-              <div>
-                <Link className="text-blue-500">Click here</Link> to reload
-              </div>
+          <div className="flex h-[80vh] w-full items-center justify-center px-3">
+            <div className="flex w-[80%] flex-col items-center gap-3 rounded-lg px-2 py-8 sm:w-[400px]">
+              <p>{err.message}</p>
+              <button
+                className="bg-black px-3 py-2 text-center text-white"
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share();
+                  } else {
+                    console.warn("Web Share API not supported on this browser");
+                  }
+                }}
+              >
+                Tell some people about your application
+              </button>
             </div>
           </div>
         )}
       </main>
+
+      {deleteId !== "" && <DeleteUser id={deleteId} setId={setDeleteId} />}
+      {editId !== "" && <EditUser id={editId} setId={setEditId} type="USER" />}
     </div>
   );
 };
