@@ -206,7 +206,7 @@ const Publishers = () => {
       </main>
 
       {addPublisherBoxIsOpen && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
+        <div className="fixed inset-0 z-20 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-500">
           <div className="w-[500px] scale-100 transform rounded-lg bg-white p-6 shadow-lg transition-transform duration-500">
             <h2 className="mb-4 text-xl font-semibold">Add New Publisher</h2>
             <input
@@ -242,12 +242,12 @@ const Publishers = () => {
               </button>
               <button
                 onClick={handleAddPublishers}
-                className={`flex items-center gap-2 rounded border-2 border-black bg-black px-4 py-2 text-white hover:bg-white hover:text-black ${isAddPublisherLoading && "cursor-wait bg-black/90 hover:bg-black/90 hover:text-white"}`}
+                className={`flex items-center gap-2 rounded border-2 border-black bg-black px-4 py-2 text-white hover:bg-white hover:text-black ${isAddPublisherLoading && "cursor-wait bg-black/60 hover:bg-black/60"}`}
               >
                 Add Publisher{" "}
                 {isAddPublisherLoading && (
                   <RotatingLines
-                    strokeColor="white"
+                    strokeColor="black"
                     width="20px"
                     height="20px"
                   />

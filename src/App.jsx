@@ -17,7 +17,7 @@ import News from "./features/publishers/News";
 import newsLoader from "./features/publishers/newsloader";
 import NewArticle from "./features/publishers/NewArticle";
 import addNewArticleAction from "./features/publishers/addNewArticleAction";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import signupAction from "./features/auth/signup/signupAction";
 import { SnackbarProvider } from "notistack";
 import ArticlePage from "./features/articles/ArticlesPage";
@@ -26,6 +26,8 @@ import Articles from "./features/articles/Articles";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const App = () => {
+  const [userId, setUserId] = useState("");
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -101,7 +103,7 @@ const App = () => {
       children: [
         {
           path: ":id",
-          element: <Articles />,
+          element: <Articles userId={userId} setUserId={setUserId} />,
           loader: articleloader,
         },
       ],

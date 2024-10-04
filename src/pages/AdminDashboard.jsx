@@ -1,13 +1,19 @@
 import { RotatingLines } from "react-loader-spinner";
 import useAuth from "../features/auth/useAuth";
 import useIsLoggedIn from "../features/auth/useIsLoggedIn";
-import { Link, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { Link, Outlet, useNavigation } from "react-router-dom";
+import { useEffect, useState } from "react";
 const AdminDashboard = function () {
   useIsLoggedIn("ADMIN");
   const { isAuthenticated, isLoading, error, user } = useAuth();
 
-  const [isSidebarOpen, setSidebarOpen] = useState(false); // State for sidebar toggle
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [navigation.state]);
 
   const toggleSidebar = () => {
     setSidebarOpen((isOpen) => !isOpen);

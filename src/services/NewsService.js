@@ -5,7 +5,6 @@ const URL = `${BASE_URL}news`;
 const getNews = async function () {
   const res = await fetch(URL, { method: "GET", credentials: "include" });
 
-  if (res.status === 404) console.log(await res.json());
   if (!res.ok) throw new Error("Unexpected Error Please try again.");
 
   const data = await res.json();
@@ -19,16 +18,43 @@ const publishNews = async function (object) {
     body: object,
   });
   const data = await res.json();
-
-  console.log(data);
   return data;
 };
 
-const getNewsById = async function (id) {
-  const res = await fetch(`${URL}/${id}`);
+const getNewsById = async function (id, userId) {
+  const url = `${URL}/${id}${userId ? `?userId=${userId}` : ""}`;
+  const res = await fetch(url);
+  console.log(url);
 
   const data = await res.json();
 
   return data;
 };
-export { getNews, publishNews, getNewsById };
+
+const likeNews = async function (newsId) {
+  const res = await fetch(`${URL}/like/${newsId}`, {
+    method: "POST",
+    credentials: "include",
+  });
+  const data = await res.json();
+
+  if (res.status !== 200) throw new Error("Could not like the post. Try again");
+
+  return data;
+};
+
+const unlikeNews = async function (likeId) {
+  const res = await fetch(`${URL}/unlike/${likeId}`, {
+    method: "POST",
+    credentials: "include",
+  });
+
+  if (res.status !== 200)
+    throw new Error("Could not unlike this post. Try again");
+
+  const data = await res.json();
+
+  return data;
+};
+
+export { getNews, publishNews, getNewsById, likeNews, unlikeNews };

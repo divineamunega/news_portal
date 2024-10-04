@@ -1,17 +1,80 @@
-import { FaComments, FaRegHeart } from "react-icons/fa6";
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaComments, FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAuth from "../auth/useAuth";
+import { enqueueSnackbar } from "notistack";
+import useIsLoggedIn from "../auth/useIsLoggedIn";
+import { likeNews, unlikeNews } from "../../services/NewsService";
 
-const Articles = () => {
+const Articles = ({ setUserId }) => {
   const data = useLoaderData();
-  console.log(data);
-  const { err, content, description, newsImage, title } = data;
+  useIsLoggedIn("USER");
+  const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    user?.id && isAuthenticated
+      ? setUserId(user.id)
+      : setUserId(".", { replace: true });
+    user?.id && isAuthenticated
+      ? navigate(`?userId=${user.id}`)
+      : navigate(".", { replace: true });
+  }, [setUserId, user, navigate, isAuthenticated]);
+
+  const {
+    err,
+    id,
+    content,
+    description,
+    newsImage,
+    title,
+    likes: noOfLikes,
+    isLiked,
+    likeId: apiLikeId,
+  } = data;
+
   const responsiveImageUrl = newsImage.replace(
     "/upload/",
     "/upload/w_auto,f_auto,q_auto/",
   );
 
   const formattedContent = content.split("\n");
-  console.log(formattedContent);
+  const [liked, setLiked] = useState(isLiked);
+  const [likes, setLikes] = useState(noOfLikes);
+  const [likeId, setLikeId] = useState(apiLikeId);
+
+  const handleClickLike = async function () {
+    if (!isAuthenticated) {
+      enqueueSnackbar({
+        message: "Please log in to be able to like this article.",
+        variant: "error",
+      });
+
+      return;
+    }
+    if (liked) {
+      if (likeId === "") return;
+      setLikes((likes) => likes - 1);
+      setLiked(false);
+      const data = await unlikeNews(likeId);
+      if (data.status === "success") {
+        setLikeId("");
+        enqueueSnackbar({ message: "Unliked Succesfully", variant: "success" });
+        return;
+      }
+    }
+
+    if (!liked) {
+      setLikes((likes) => likes + 1);
+      setLiked(true);
+      const data = await likeNews(id);
+      if (data?.like.id) {
+        setLikeId(data.like.id);
+        enqueueSnackbar({ message: "Liked Succesfully", variant: "success" });
+      }
+      return;
+    }
+  };
 
   return (
     <main className="container mx-auto max-w-[50rem] px-6 py-12">
@@ -37,9 +100,14 @@ const Articles = () => {
           {/* Likes and Comments */}
           <div className="mt-8 flex justify-between">
             <div className="flex items-center space-x-2">
-              {/* <FaHeart size={25} /> */}
-              <FaRegHeart size={30} />
-              <span>125 Likes</span>
+              <button onClick={handleClickLike}>
+                {liked ? (
+                  <FaHeart size={30} color="red" />
+                ) : (
+                  <FaRegHeart size={30} />
+                )}
+              </button>
+              <span>{likes} Likes</span>
             </div>
             <div className="flex items-center space-x-2">
               <FaComments size={25} className="text-darkCyan" />
@@ -48,15 +116,15 @@ const Articles = () => {
           </div>
 
           {/* Comments Section */}
-          {/* <section className="mt-12">
-          <h2 className="text-2xl font-bold">Comments</h2>
-          <div className="mt-6 space-y-4">
-            {comments.map((comment) => (
-              <Comment key={comment.id} {...comment} />
-            ))}
-          </div>
-          <AddCommentForm />
-        </section> */}
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold">Comments</h2>
+            <div className="mt-6 space-y-4">
+              {[].map((comment) => (
+                <Comment key={comment.id} {...comment} />
+              ))}
+            </div>
+            <AddCommentForm />
+          </section>
         </article>
       )}
 

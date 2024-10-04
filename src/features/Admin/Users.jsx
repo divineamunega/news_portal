@@ -52,11 +52,6 @@ const Users = () => {
           </button>
           <h1 className="text-lg font-semibold">User Management</h1>
         </div>
-        <div className="flex items-center gap-4">
-          <button className="rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100">
-            Add User
-          </button>
-        </div>
       </header>
 
       {/* Table */}
