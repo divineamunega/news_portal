@@ -1,6 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
+import { Outlet, useNavigation } from "react-router-dom";
 
 export default function ArticlePage() {
+  const isLoading = useNavigation().state === "loading";
+  if (isLoading)
+    return (
+      <div className="flex h-[100dvh] w-[98dvw] items-center justify-center">
+        <RotatingLines width="80" height="80" strokeColor="black" />
+      </div>
+    );
+
   return (
     <div>
       {/* Header */}
