@@ -9,7 +9,11 @@ const useIsLoggedIn = function (role) {
     try {
       dispatch({ type: "auth/loading" });
       const user = await checkAuthStatus(role);
+      sessionStorage.setItem("userId", "");
       if (!user) return;
+      console.log(user.user.id);
+
+      sessionStorage.setItem("userId", user.user.id);
       dispatch({
         type: "auth/login",
         payload: typeof user === "boolean" ? {} : user.user,

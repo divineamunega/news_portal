@@ -1,12 +1,10 @@
 import { getNewsById } from "../../services/NewsService";
 
-const articleloader = async function ({ params, request }) {
+const articleloader = async function ({ params }) {
   const { id } = params;
 
-  let userId = "";
-  if (request.url.split("?")[1]?.startsWith("userId=")) {
-    userId = request.url.split("?")[1].split("=")[1];
-  }
+  let userId = sessionStorage.getItem("userId");
+  console.log(userId);
 
   try {
     const data = await getNewsById(id, userId);

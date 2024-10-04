@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaComments, FaHeart, FaRegHeart } from "react-icons/fa6";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import { enqueueSnackbar } from "notistack";
 import useIsLoggedIn from "../auth/useIsLoggedIn";
 import { likeNews, unlikeNews } from "../../services/NewsService";
+import { RotatingLines } from "react-loader-spinner";
 
 const Articles = ({ setUserId }) => {
   const data = useLoaderData();
   useIsLoggedIn("USER");
-  const { isAuthenticated, user } = useAuth();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    user?.id && isAuthenticated
-      ? setUserId(user.id)
-      : setUserId(".", { replace: true });
-    user?.id && isAuthenticated
-      ? navigate(`?userId=${user.id}`)
-      : navigate(".", { replace: true });
-  }, [setUserId, user, navigate, isAuthenticated]);
+  const { isAuthenticated } = useAuth();
 
   const {
     err,
@@ -42,6 +33,8 @@ const Articles = ({ setUserId }) => {
   const [liked, setLiked] = useState(isLiked);
   const [likes, setLikes] = useState(noOfLikes);
   const [likeId, setLikeId] = useState(apiLikeId);
+
+  const isLoading = useNavigation().state === "loading";
 
   const handleClickLike = async function () {
     if (!isAuthenticated) {
@@ -75,6 +68,13 @@ const Articles = ({ setUserId }) => {
       return;
     }
   };
+
+  if (isLoading)
+    return (
+      <div className="flex h-[100dvh] w-[98dvw] items-center justify-center">
+        <RotatingLines width="80" height="80" strokeColor="black" />
+      </div>
+    );
 
   return (
     <main className="container mx-auto max-w-[50rem] px-6 py-12">
