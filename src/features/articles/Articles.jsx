@@ -112,7 +112,14 @@ const Articles = ({ setUserId }) => {
           <section className="mt-12">
             <h2 className="text-2xl font-bold">Comments</h2>
             <div className="mt-6 space-y-4">
-              {[].map((comment) => (
+              {[
+                {
+                  name: "Divine Amunega",
+                  time: "20 o Clock",
+                  comment:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur commodi voluptas, quae consequuntur hic explicabo libero, perspiciatis recusandae a deleniti quia repellendus veniam praesentium accusamus. Labore necessitatibus laborum consectetur voluptatem.",
+                },
+              ].map((comment) => (
                 <Comment key={comment.id} {...comment} />
               ))}
             </div>
@@ -152,41 +159,9 @@ function AddCommentForm() {
   );
 }
 
-// Icons & Avatar Component
-function HeartIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
-      <path d="M12 21c-1.2-1.2-5-5.2-7-7C2 11.7 2 9.5 3.5 8 5 6.5 7.5 7 9 8s2.5 1.5 3 2 1.5 1.5 3 2 3.5 1.5 5 0 2-2 1-3c-1-1-5-5-7-7" />
-    </svg>
-  );
-}
-
-function MessageCircleIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth="2"
-    >
-      <path d="M8 15h8m0 0v4l-2-2m-6 2-2-2m2 0H4l-2-2" />
-    </svg>
-  );
-}
-
 function Comment({ name, time, comment }) {
   return (
     <div className="flex items-start space-x-4">
-      <Avatar />
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <h4 className="font-bold">{name}</h4>
