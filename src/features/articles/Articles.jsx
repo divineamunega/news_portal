@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { FaComments, FaHeart, FaRegHeart } from "react-icons/fa6";
-import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
+import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 import { enqueueSnackbar } from "notistack";
 import useIsLoggedIn from "../auth/useIsLoggedIn";
 import { likeNews, unlikeNews } from "../../services/NewsService";
-import { RotatingLines } from "react-loader-spinner";
+import date from "date-and-time";
 
-const Articles = ({ setUserId }) => {
+const Articles = () => {
   const data = useLoaderData();
   useIsLoggedIn("USER");
   const { isAuthenticated } = useAuth();
@@ -22,20 +22,38 @@ const Articles = ({ setUserId }) => {
     likes: noOfLikes,
     isLiked,
     likeId: apiLikeId,
+    comments,
   } = data;
 
-  const responsiveImageUrl = newsImage.replace(
-    "/upload/",
-    "/upload/w_auto,f_auto,q_auto/",
-  );
+  const responsiveImageUrl =
+    err || newsImage.replace("/upload/", "/upload/w_auto,f_auto,q_auto/");
 
-  const formattedContent = content.split("\n");
+  const formattedContent = err || content.split("\n");
   const [liked, setLiked] = useState(isLiked);
   const [likes, setLikes] = useState(noOfLikes);
   const [likeId, setLikeId] = useState(apiLikeId);
 
-  const isLoading = useNavigation().state === "loading";
+  const commentErr = useActionData()?.err;
 
+  if (err)
+    return (
+      <div>
+        {err}
+        <p>
+          <Link to="." className="text-blue-600">
+            Try again
+          </Link>
+        </p>
+      </div>
+    );
+  if (commentErr) {
+    console.log(commentErr);
+    enqueueSnackbar({
+      variant: "error",
+      message: commentErr,
+      preventDuplicate: true,
+    });
+  }
   const handleClickLike = async function () {
     if (!isAuthenticated) {
       enqueueSnackbar({
@@ -68,6 +86,8 @@ const Articles = ({ setUserId }) => {
       return;
     }
   };
+
+  console.log("errorr", err);
 
   return (
     <main className="container mx-auto max-w-[50rem] px-6 py-12">
@@ -104,7 +124,7 @@ const Articles = ({ setUserId }) => {
             </div>
             <div className="flex items-center space-x-2">
               <FaComments size={25} className="text-darkCyan" />
-              <span>42</span>
+              <span>{comments.length}</span>
             </div>
           </div>
 
@@ -112,23 +132,23 @@ const Articles = ({ setUserId }) => {
           <section className="mt-12">
             <h2 className="text-2xl font-bold">Comments</h2>
             <div className="mt-6 space-y-4">
-              {[
-                {
-                  name: "Divine Amunega",
-                  time: "20 o Clock",
-                  comment:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur commodi voluptas, quae consequuntur hic explicabo libero, perspiciatis recusandae a deleniti quia repellendus veniam praesentium accusamus. Labore necessitatibus laborum consectetur voluptatem.",
-                },
-              ].map((comment) => (
+              {comments?.map((comment) => (
                 <Comment key={comment.id} {...comment} />
               ))}
             </div>
-            <AddCommentForm />
+            {isAuthenticated ? (
+              <AddCommentForm />
+            ) : (
+              <div className="flex w-full flex-col items-center justify-center pt-10">
+                Please Log in to add comments
+                <Link to="/auth" className="text-blue-600">
+                  Login
+                </Link>
+              </div>
+            )}
           </section>
         </article>
       )}
-
-      {err && <div>{err}</div>}
     </main>
   );
 };
@@ -137,13 +157,14 @@ export default Articles;
 
 function AddCommentForm() {
   return (
-    <form className="mt-8 space-y-4">
+    <Form className="mt-8 space-y-4" method="POST">
       <div className="grid gap-2">
         <label htmlFor="comment" className="text-sm font-medium">
           Comment
         </label>
         <textarea
           id="comment"
+          name="content"
           rows="4"
           className="w-full rounded-md border p-2 focus:ring-2 focus:ring-blue-500"
           placeholder="Your comment"
@@ -155,19 +176,21 @@ function AddCommentForm() {
       >
         Submit
       </button>
-    </form>
+    </Form>
   );
 }
 
-function Comment({ name, time, comment }) {
+function Comment({ name, createdAt, content }) {
   return (
     <div className="flex items-start space-x-4">
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <h4 className="font-bold">{name}</h4>
-          <span className="text-xs text-gray-500">{time}</span>
+          <span className="text-xs text-gray-500">
+            {date.format(new Date(createdAt), "YYYY/MM/DD HH:mm:ss")}
+          </span>
         </div>
-        <p className="mt-2 text-gray-700">{comment}</p>
+        <p className="mt-2 text-gray-700">{content}</p>
       </div>
     </div>
   );

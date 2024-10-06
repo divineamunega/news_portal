@@ -1,15 +1,6 @@
-import { RotatingLines } from "react-loader-spinner";
-import { Outlet, useNavigation } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 export default function ArticlePage() {
-  const isLoading = useNavigation().state === "loading";
-  if (isLoading)
-    return (
-      <div className="flex h-[100dvh] w-[98dvw] items-center justify-center">
-        <RotatingLines width="80" height="80" strokeColor="black" />
-      </div>
-    );
-
   return (
     <div>
       {/* Header */}
@@ -17,18 +8,16 @@ export default function ArticlePage() {
         <div className="container mx-auto flex items-center justify-between px-6">
           <a href="#" className="flex items-center">
             <MountainIcon className="mr-2 h-6 w-6" />
-            <span className="text-lg font-bold">Acme Blog</span>
+            <span className="text-lg font-bold">ACU Blog</span>
           </a>
           <nav className="hidden space-x-4 md:flex">
-            <a href="#" className="hover:text-gray-300">
+            <Link to="/" className="hover:text-gray-300">
               Home
-            </a>
+            </Link>
             <a href="#" className="hover:text-gray-300">
               About
             </a>
-            <a href="#" className="hover:text-gray-300">
-              Blog
-            </a>
+
             <a href="#" className="hover:text-gray-300">
               Contact
             </a>

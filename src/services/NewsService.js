@@ -24,7 +24,6 @@ const publishNews = async function (object) {
 const getNewsById = async function (id, userId) {
   const url = `${URL}/${id}${userId ? `?userId=${userId}` : ""}`;
   const res = await fetch(url);
-  console.log(url);
 
   const data = await res.json();
 
@@ -57,4 +56,23 @@ const unlikeNews = async function (likeId) {
   return data;
 };
 
-export { getNews, publishNews, getNewsById, likeNews, unlikeNews };
+const comment = async function (newsId, data) {
+  const res = await fetch(`${URL}/comment/${newsId}`, {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const responseData = await res.json();
+
+  if (res.status === 401) throw new Error("Please Log in to make comments");
+  if (res.status !== 201)
+    throw new Error("An error occured while creating that comment");
+
+  return responseData;
+};
+
+export { getNews, publishNews, getNewsById, likeNews, unlikeNews, comment };

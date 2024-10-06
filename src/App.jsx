@@ -23,6 +23,7 @@ import { SnackbarProvider } from "notistack";
 import ArticlePage from "./features/articles/ArticlesPage";
 import articleloader from "./features/articles/articleloader";
 import Articles from "./features/articles/Articles";
+import articleAction from "./features/articles/articleAction";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const App = () => {
@@ -105,6 +106,7 @@ const App = () => {
           path: ":id",
           element: <Articles userId={userId} setUserId={setUserId} />,
           loader: articleloader,
+          action: articleAction,
         },
       ],
     },
