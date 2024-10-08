@@ -12,6 +12,7 @@ const Articles = () => {
   useIsLoggedIn("USER");
   const { isAuthenticated } = useAuth();
 
+  console.log(isAuthenticated);
   const {
     err,
     id,

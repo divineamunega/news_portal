@@ -10,9 +10,8 @@ const useIsLoggedIn = function (role) {
       dispatch({ type: "auth/loading" });
       const user = await checkAuthStatus(role);
       sessionStorage.setItem("userId", "");
+      console.log(sessionStorage.getItem("userId"));
       if (!user) return;
-      console.log(user.user.id);
-
       sessionStorage.setItem("userId", user.user.id);
       dispatch({
         type: "auth/login",

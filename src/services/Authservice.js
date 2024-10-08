@@ -56,11 +56,23 @@ export const checkAuthStatus = async (role) => {
 
   if (!response.ok) throw new Error("Please try again");
   const data = await response.json();
+  console.log(data);
 
   if (data.status === "success") {
-    if (data.data.role !== role && data.data.role !== "ADMIN")
-      throw new Error("You can't access this page.");
+    console.log(data.data.role);
 
+    if (
+      data.data.role !== "ADMIN" &&
+      data.data.role !== "PUBLISHER" &&
+      data.data.role !== "USER"
+    ) {
+      throw new Error("You can't access this page.");
+    }
+    if (data.data.role === "USER" && (role === "PUBLISHER" || role === "ADMIN"))
+      throw new Error("You can't access this page");
+
+    if (data.data.role === "PUBLISHER" && role === "ADMIN")
+      throw new Error("You can't access this page");
     return { user: data.data };
   }
   if (data.status !== "success") return false;

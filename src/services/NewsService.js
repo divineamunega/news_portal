@@ -75,4 +75,23 @@ const comment = async function (newsId, data) {
   return responseData;
 };
 
-export { getNews, publishNews, getNewsById, likeNews, unlikeNews, comment };
+const getMainNews = async function () {
+  const res = await fetch(`${URL}/main`);
+  const data = await res.json();
+
+  console.log(res);
+  console.log(data);
+
+  if (res.status !== 200)
+    throw new Error("An unexptected Error occured. Please Try again.");
+  return data.data;
+};
+export {
+  getNews,
+  publishNews,
+  getNewsById,
+  likeNews,
+  unlikeNews,
+  comment,
+  getMainNews,
+};

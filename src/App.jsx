@@ -20,12 +20,13 @@ import addNewArticleAction from "./features/publishers/addNewArticleAction";
 import { lazy, Suspense, useState } from "react";
 import signupAction from "./features/auth/signup/signupAction";
 import { SnackbarProvider } from "notistack";
-import ArticlePage from "./features/articles/ArticlesPage";
 import articleloader from "./features/articles/articleloader";
 import Articles from "./features/articles/Articles";
 import articleAction from "./features/articles/articleAction";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
+const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
+
 const App = () => {
   const [userId, setUserId] = useState("");
 
@@ -100,7 +101,12 @@ const App = () => {
 
     {
       path: "articles",
-      element: <ArticlePage />,
+
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <ArticlePage />
+        </Suspense>
+      ),
       children: [
         {
           path: ":id",
