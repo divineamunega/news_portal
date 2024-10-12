@@ -4,11 +4,8 @@ import HomePageComputerScience from "../ui/HomePageComputerScience";
 import HomePageHero from "../ui/HomePageHero";
 import HomePageNews from "../ui/HomePageNews";
 import NavBar from "../ui/NavBar";
-import {
-  comment,
-  getMainNews,
-  getNewsUnAuth as getNews,
-} from "../services/NewsService";
+import { getMainNews, getNewsUnAuth as getNews } from "../services/NewsService";
+import Loader from "../ui/Loader";
 
 const HomePage = () => {
   const [homeNews, setHomeNews] = useState([]);
@@ -45,6 +42,7 @@ const HomePage = () => {
     setNewsPage();
   }, [homeNews]);
 
+  if (isLoading) return <Loader />;
   return (
     <div>
       <NavBar />

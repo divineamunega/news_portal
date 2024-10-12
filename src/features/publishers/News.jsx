@@ -2,8 +2,6 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const News = () => {
   const data = useLoaderData();
-  console.log(data);
-
   return (
     <main className="h-full w-full flex-1 overflow-y-scroll p-6">
       <h1 className="mb-6 text-3xl font-bold">News Articles</h1>
