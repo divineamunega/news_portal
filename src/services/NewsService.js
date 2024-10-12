@@ -86,6 +86,19 @@ const getMainNews = async function () {
     throw new Error("An unexptected Error occured. Please Try again.");
   return data.data;
 };
+
+const getNewsUnAuth = async function () {
+  const res = await fetch(URL);
+  const data = await res.json();
+
+  console.log(res);
+  console.log(data);
+
+  if (res.status !== 200)
+    throw new Error("An unexpecred Error occured. Try again");
+
+  return data.news;
+};
 export {
   getNews,
   publishNews,
@@ -94,4 +107,5 @@ export {
   unlikeNews,
   comment,
   getMainNews,
+  getNewsUnAuth,
 };
