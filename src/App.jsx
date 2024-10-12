@@ -23,6 +23,7 @@ import { SnackbarProvider } from "notistack";
 import articleloader from "./features/articles/articleloader";
 import Articles from "./features/articles/Articles";
 import articleAction from "./features/articles/articleAction";
+import Loader from "./ui/Loader";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
@@ -35,7 +36,7 @@ const App = () => {
       path: "/",
 
       element: (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <HomePage />,
         </Suspense>
       ),

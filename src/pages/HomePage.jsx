@@ -15,11 +15,13 @@ const HomePage = () => {
   const [news, setNews] = useState([]);
   const [computerScience, setComputerScience] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
   const isFetched = useRef(false);
   useEffect(() => {
     const setNewsPage = async () => {
       try {
         if (isFetched.current === false) {
+          setIsLoading(true);
           setHomeNews(await getMainNews());
 
           const data = await getNews();
@@ -36,6 +38,8 @@ const HomePage = () => {
         console.log(err);
         setHomeNews([]);
         isFetched.current = false;
+      } finally {
+        setIsLoading(false);
       }
     };
     setNewsPage();
