@@ -32,10 +32,14 @@ const sections = [
   // Add other sections...
 ];
 
-const Select = function () {
+const Select = function ({ defaultValue }) {
   // Form with section and subsection dropdowns
-  const [selectedSection, setSelectedSection] = useState("");
-  const [selectedSubsection, setSelectedSubsection] = useState("");
+  const [selectedSection, setSelectedSection] = useState(
+    defaultValue ? defaultValue[0] : "",
+  );
+  const [selectedSubsection, setSelectedSubsection] = useState(
+    defaultValue ? defaultValue[1] : "",
+  );
 
   return (
     <div className="flex w-[60%] gap-4">

@@ -115,6 +115,17 @@ const deleteNews = async function (id) {
 
   return data;
 };
+
+const editArticle = async function (id, object) {
+  const res = await fetch(`${URL}/${id}`, {
+    method: "PUT",
+    credentials: "include",
+    body: object,
+  });
+  const data = await res.json();
+  console.log(data);
+  return data;
+};
 export {
   getNews,
   publishNews,
@@ -125,4 +136,5 @@ export {
   comment,
   getMainNews,
   getNewsUnAuth,
+  editArticle,
 };

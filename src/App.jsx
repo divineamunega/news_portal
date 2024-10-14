@@ -24,7 +24,9 @@ import articleloader from "./features/articles/articleloader";
 import Articles from "./features/articles/Articles";
 import articleAction from "./features/articles/articleAction";
 import Loader from "./ui/Loader";
-
+import EditArticle from "./features/publishers/EditArticle";
+import editArticleLoader from "./features/publishers/editArticleLoader";
+import editArticleAction from "./features/publishers/editArticleAction";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
@@ -96,6 +98,13 @@ const App = () => {
           path: "add-new-article",
           element: <NewArticle />,
           action: addNewArticleAction,
+        },
+
+        {
+          path: "news/edit/:id",
+          element: <EditArticle />,
+          loader: editArticleLoader,
+          action: editArticleAction,
         },
       ],
     },

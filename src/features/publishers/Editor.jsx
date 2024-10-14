@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-const Editor = () => {
-  const [content, setContent] = useState("");
+const Editor = ({ defaultValue }) => {
+  const [content, setContent] = useState(defaultValue);
   const textareaRef = useRef(null);
 
   useEffect(() => {
