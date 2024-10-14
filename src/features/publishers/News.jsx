@@ -1,7 +1,29 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { deleteNews } from "../../services/NewsService";
+import { enqueueSnackbar } from "notistack";
 
 const News = () => {
   const data = useLoaderData();
+  console.log(data);
+  const navigate = useNavigate();
+
+  const handleDeleteArticle = async function (id) {
+    try {
+      await deleteNews(id);
+      enqueueSnackbar({
+        message: "News deleted successfully",
+        variant: "success",
+      });
+      navigate(".");
+    } catch (err) {
+      enqueueSnackbar({
+        message: err.message,
+        variant: "error",
+        persist: false,
+      });
+    }
+  };
+
   return (
     <main className="h-full w-full flex-1 overflow-y-scroll p-6">
       <h1 className="mb-6 text-3xl font-bold">News Articles</h1>
@@ -54,10 +76,10 @@ const News = () => {
                 <p className="text-sm text-gray-500">{news.description}</p>
                 <div className="mt-2 flex items-center space-x-4">
                   <span className="text-gray-600">
-                    <strong>Likes:</strong> 120
+                    <strong>Likes:</strong> {news.likes}
                   </span>
                   <span className="text-gray-600">
-                    <strong>Comments:</strong> 45
+                    <strong>Comments:</strong> {news.comments}
                   </span>
                 </div>
               </div>
@@ -72,9 +94,20 @@ const News = () => {
                     Draft
                   </span>
                 )}
-                <a href="#" className="text-sm text-red-600">
-                  Delete
-                </a>
+                <span className="flex gap-5">
+                  <Link
+                    to={`edit/${news.id}`}
+                    className="text-sm text-green-600"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    className="text-sm text-red-600"
+                    onClick={() => handleDeleteArticle(news.id)}
+                  >
+                    Delete
+                  </button>
+                </span>
               </div>
             </div>
           ))}

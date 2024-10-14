@@ -3,7 +3,10 @@ import BASE_URL from "../ BASE_URL";
 const URL = `${BASE_URL}news`;
 
 const getNews = async function () {
-  const res = await fetch(URL, { method: "GET", credentials: "include" });
+  const res = await fetch(`${URL}/publisher`, {
+    method: "GET",
+    credentials: "include",
+  });
 
   if (!res.ok) throw new Error("Unexpected Error Please try again.");
 
@@ -99,9 +102,23 @@ const getNewsUnAuth = async function () {
 
   return data.news;
 };
+
+const deleteNews = async function (id) {
+  const res = await fetch(`${URL}/delete/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
+
+  const data = await res.json();
+  if (data.status !== "success") throw new Error("An unexpected error occured");
+  if (res.status !== 200) throw new Error("An unexpected error occured");
+
+  return data;
+};
 export {
   getNews,
   publishNews,
+  deleteNews,
   getNewsById,
   likeNews,
   unlikeNews,
