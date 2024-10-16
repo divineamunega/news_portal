@@ -17,7 +17,7 @@ const NavBar = () => {
     <>
       <nav className="flex w-full flex-col gap-6 px-0 pb-5 text-richBlack shadow-md md:px-8 md:pt-5 md:shadow-lg lg:px-24 lg:pt-5">
         <NavLogo title={title} />
-        <div className="mt-auto hidden justify-between text-nowrap sm:hidden md:flex">
+        <div className="z-20 mt-auto hidden justify-between text-nowrap sm:hidden md:flex">
           <ul className="flex text-xs font-bold md:gap-1 md:text-sm lg:gap-8 lg:text-base">
             <li className={listStyle}>
               <NavLink to="/" className="flex items-center justify-center">

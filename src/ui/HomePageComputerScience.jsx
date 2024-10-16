@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import ClipText from "../ui/ClipText";
 const HomePageComputerScience = ({ news }) => {
   return (
     <div className="mt-20 h-fit w-full px-5 pt-5 font-roboto md:px-8 md:pt-5 lg:mt-10 lg:px-24">
@@ -37,7 +37,7 @@ const HomePageComputerScience = ({ news }) => {
                   <span>{publishedAt}</span>
                 </div>
                 <p className="max-w-readable font-lora text-[0.9rem] md:text-base lg:text-xs">
-                  {content}
+                  <ClipText limit={250}>{content}</ClipText>
                 </p>
               </div>
             </div>

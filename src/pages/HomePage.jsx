@@ -6,12 +6,13 @@ import HomePageNews from "../ui/HomePageNews";
 import NavBar from "../ui/NavBar";
 import { getMainNews, getNewsUnAuth as getNews } from "../services/NewsService";
 import Loader from "../ui/Loader";
+import Footer from "../ui/Footer";
 
 const HomePage = () => {
   const [homeNews, setHomeNews] = useState([]);
   const [news, setNews] = useState([]);
   const [computerScience, setComputerScience] = useState([]);
-
+  const [campusLife, setCampusLife] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const isFetched = useRef(false);
   useEffect(() => {
@@ -27,6 +28,10 @@ const HomePage = () => {
           setNews(() => data.filter(({ section }) => section === "News"));
           setComputerScience(() =>
             data.filter(({ section }) => section === "Computer Science"),
+          );
+
+          setCampusLife(() =>
+            data.filter(({ section }) => section === "Campus Life"),
           );
 
           isFetched.current = true;
@@ -51,9 +56,8 @@ const HomePage = () => {
 
       <HomePageNews news={news} />
       <HomePageComputerScience news={computerScience} />
-      <HomepageCampusLife />
-      <HomePageNews />
-      <HomePageComputerScience />
+      <HomepageCampusLife news={campusLife} />
+      <Footer />
     </div>
   );
 };
