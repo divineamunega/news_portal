@@ -27,6 +27,7 @@ import Loader from "./ui/Loader";
 import EditArticle from "./features/publishers/EditArticle";
 import editArticleLoader from "./features/publishers/editArticleLoader";
 import editArticleAction from "./features/publishers/editArticleAction";
+import SectionPage from "./features/section/SectionPage";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
@@ -129,6 +130,7 @@ const App = () => {
 
     {
       path: "/section",
+      element: <SectionPage />,
     },
   ]);
 
