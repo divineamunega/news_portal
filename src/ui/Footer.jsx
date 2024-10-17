@@ -114,19 +114,19 @@ const Footer = () => {
             <div className="flex sm:justify-center xl:justify-start">
               <a
                 href=""
-                className="h-8 w-8 rounded-full border border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
+                className="h-8 w-8 rounded-full border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-blue-600 hover:bg-blue-600 hover:text-white"
               >
                 <i className="fab fa-facebook"></i>
               </a>
               <a
                 href=""
-                className="ml-2 h-8 w-8 rounded-full border border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-blue-400 hover:bg-blue-400 hover:text-white"
+                className="ml-2 h-8 w-8 rounded-full border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-blue-400 hover:bg-blue-400 hover:text-white"
               >
                 <i className="fab fa-twitter"></i>
               </a>
               <a
                 href=""
-                className="ml-2 h-8 w-8 rounded-full border border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-red-600 hover:bg-red-600 hover:text-white"
+                className="ml-2 h-8 w-8 rounded-full border-2 border-gray-400 py-1 text-center text-gray-600 hover:border-red-600 hover:bg-red-600 hover:text-white"
               >
                 <i className="fab fa-google-plus-g"></i>
               </a>

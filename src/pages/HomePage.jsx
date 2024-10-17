@@ -7,6 +7,7 @@ import NavBar from "../ui/NavBar";
 import { getMainNews, getNewsUnAuth as getNews } from "../services/NewsService";
 import Loader from "../ui/Loader";
 import Footer from "../ui/Footer";
+import date from "date-and-time";
 
 const HomePage = () => {
   const [homeNews, setHomeNews] = useState([]);
@@ -23,15 +24,26 @@ const HomePage = () => {
           setHomeNews(await getMainNews());
 
           const data = await getNews();
-          console.log(data);
 
-          setNews(() => data.filter(({ section }) => section === "News"));
+          const dataDate = data?.map((news) => {
+            const createdate = date.format(
+              new Date(news.createdAt),
+              "DD-MM-YYYY HH:mm",
+            );
+
+            return {
+              ...news,
+              publishedAt: createdate + "",
+            };
+          });
+
+          setNews(() => dataDate.filter(({ section }) => section === "News"));
           setComputerScience(() =>
-            data.filter(({ section }) => section === "Computer Science"),
+            dataDate.filter(({ section }) => section === "Computer Science"),
           );
 
           setCampusLife(() =>
-            data.filter(({ section }) => section === "Campus Life"),
+            dataDate.filter(({ section }) => section === "Campus Life"),
           );
 
           isFetched.current = true;

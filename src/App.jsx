@@ -126,6 +126,10 @@ const App = () => {
         },
       ],
     },
+
+    {
+      path: "/section",
+    },
   ]);
 
   return (
