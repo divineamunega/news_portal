@@ -28,6 +28,7 @@ import EditArticle from "./features/publishers/EditArticle";
 import editArticleLoader from "./features/publishers/editArticleLoader";
 import editArticleAction from "./features/publishers/editArticleAction";
 import SectionPage from "./features/section/SectionPage";
+import NewsSection from "./features/section/NewsSection";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
@@ -129,8 +130,13 @@ const App = () => {
     },
 
     {
-      path: "/section",
-      element: <SectionPage />,
+      path: "/section/news",
+      element: (
+        <SectionPage
+          data={{ section: "News" }}
+          Component={NewsSection}
+        ></SectionPage>
+      ),
     },
   ]);
 

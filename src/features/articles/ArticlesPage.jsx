@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../../ui/Footer";
 
 export default function ArticlePage() {
   return (
@@ -33,21 +34,7 @@ export default function ArticlePage() {
 
       <Outlet />
       {/* Footer */}
-      <footer className="bg-gray-100 py-6">
-        <div className="container mx-auto flex items-center justify-between px-6">
-          <p className="text-sm text-gray-500">
-            &copy; 2024 Acme Blog. All rights reserved.
-          </p>
-          <nav className="flex space-x-4">
-            <a href="#" className="text-sm hover:underline">
-              Terms of Service
-            </a>
-            <a href="#" className="text-sm hover:underline">
-              Privacy Policy
-            </a>
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
