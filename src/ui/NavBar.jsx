@@ -210,24 +210,36 @@ const NavBar = () => {
             >
               <ul className="flex flex-col items-center gap-5 text-xl">
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/news#department"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Department News
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/news#events"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     University Events
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/news#research"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Research and Innovation
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/news#alumni"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Alumni Updates
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
