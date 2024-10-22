@@ -48,7 +48,7 @@ const SubSection = function ({ news, title, id }) {
       <h2 className="mt-14 text-3xl font-extrabold" id={id}>
         {title}
       </h2>
-      <div className="flex h-auto flex-wrap gap-5 px-5 pr-10 pt-5 md:px-8 md:pt-5 lg:px-24">
+      <div className="flex h-auto flex-wrap gap-5 px-5 pt-5 md:px-8 md:pt-5 lg:px-24">
         {news.map(({ id, title, newsImage, content }) => {
           const resizedImageUrl = `${newsImage.replace("/upload/", "/upload/w_300,h_200,c_fill/")}`;
 

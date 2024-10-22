@@ -8,7 +8,7 @@ const Footer = () => {
             <ul className="footer-links list-none">
               <li className="mb-2">
                 <a
-                  href="#"
+                  href="/section/news#department"
                   className="border-b border-solid border-transparent hover:border-darkCyan hover:text-darkCyan"
                 >
                   Department News
@@ -16,7 +16,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <a
-                  href="#"
+                  href="/section/news#events"
                   className="border-b border-solid border-transparent hover:border-darkCyan hover:text-darkCyan"
                 >
                   University Events
@@ -24,7 +24,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <a
-                  href="#"
+                  href="/section/news#innovation"
                   className="border-b border-solid border-transparent hover:border-darkCyan hover:text-darkCyan"
                 >
                   Research and innovation
@@ -32,7 +32,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <a
-                  href="#"
+                  href="/section/news#alumni"
                   className="border-b border-solid border-transparent hover:border-darkCyan hover:text-darkCyan"
                 >
                   Alumni Updates

@@ -60,7 +60,8 @@ const SectionPage = ({ Component, data }) => {
         <div
           className="absolute left-0 top-0 -z-10 h-full w-full"
           style={{
-            background: "red url(../../public/homepic4.jpg)",
+            background:
+              "black url(https://media.gettyimages.com/id/157505397/photo/quandrangle-lawn-at-the-university-of-washington.webp?s=1024x1024&w=gi&k=20&c=N8IsyzTcLozU_ZMNtrvo38FlVrLQ5Wz5T3iV-ZLA-oU=)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             filter: "brightness(40%)",
