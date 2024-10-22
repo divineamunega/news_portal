@@ -32,24 +32,36 @@ const NavBar = () => {
               <div className="absolute left-[-10px] top-[100%] z-10 hidden text-nowrap bg-white px-4 py-6 text-left text-sm font-normal shadow-lg transition-all duration-300 group-hover:block">
                 <ul className="flex flex-col gap-5">
                   <li className="">
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                      href="/section/news#department"
+                    >
                       Department News
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/news#events"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       University Events
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/news#research"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Research and Innovation
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/news#alumni"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Alumni Updates
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
