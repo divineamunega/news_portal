@@ -3,6 +3,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { useLoaderData, useNavigate, useNavigation } from "react-router-dom";
 import DeleteUser from "./DeleteUser";
 import EditUser from "./EditUser";
+import { enqueueSnackbar } from "notistack";
 
 const Users = () => {
   const {
@@ -150,6 +151,11 @@ const Users = () => {
                     });
                   } else {
                     console.warn("Web Share API not supported on this browser");
+                    enqueueSnackbar({
+                      message:
+                        "Web Share API not supported on this browser. Try it on your mobile phone",
+                      variant: "error",
+                    });
                   }
                 }}
               >

@@ -126,7 +126,7 @@ const Publishers = () => {
                       <td className="border px-4 py-2">{user.email}</td>
                       <td className="border px-4 py-2">
                         <span className="rounded bg-yellow-100 px-2 py-1 text-yellow-800">
-                          0
+                          {user.news.length}
                         </span>
                       </td>
                       <td className="border px-4 py-2">
