@@ -75,30 +75,45 @@ const NavBar = () => {
               <div className="absolute left-[-10px] top-[100%] z-10 hidden text-nowrap bg-white px-4 py-6 text-left text-sm font-normal shadow-lg transition-all duration-300 group-hover:block">
                 <ul className="flex flex-col gap-5">
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/campus#tour"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Campus Tour
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/campus#live"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Where to Live
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/campus#eat"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Where to Eat
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/campus#places"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Places to See
-                    </Link>
+                    </a>
                   </li>
 
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/campus#art"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Art and Culture
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -112,37 +127,55 @@ const NavBar = () => {
               <div className="absolute left-[-10px] top-[100%] z-10 hidden text-nowrap bg-white px-4 py-6 text-left text-sm font-normal shadow-lg transition-all duration-300 group-hover:block">
                 <ul className="flex flex-col gap-5">
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/computer#department"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Department Overview
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/computer#research"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Research & Projects
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/computer#events"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Tech Events & Workshops
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                    <a
+                      href="/section/computer#sstudent"
+                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                    >
                       Student Resources
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
             </li>
 
             <li className={listStyle}>
-              <NavLink to="/" className="flex items-center justify-center">
+              <NavLink
+                to="/articles/e8cbc468-f5ca-4ef7-ace9-25779a1bfc19"
+                className="flex items-center justify-center"
+              >
                 Events
               </NavLink>
             </li>
 
             <li className={listStyle}>
-              <NavLink to="/" className="flex items-center justify-center">
+              <NavLink
+                to="/articles/cabb5a58-e907-42b4-b0b9-65c95e856eab"
+                className="flex items-center justify-center"
+              >
                 About Us
               </NavLink>
             </li>
@@ -264,30 +297,45 @@ const NavBar = () => {
             >
               <ul className="flex flex-col items-center gap-5 text-xl">
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/campus#tour"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Campus Tour
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/campus#live"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Where to Live
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/campus#eat"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Where to Eat
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/campus#see"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Places to See
-                  </Link>
+                  </a>
                 </li>
 
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/campus#art"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Art and Culture
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -312,37 +360,55 @@ const NavBar = () => {
             >
               <ul className="flex flex-col items-center gap-5 text-xl">
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/computer#department"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Department Overview
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/computer#research"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Research & Projects
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/computer#events"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Tech Events & Workshops
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50">
+                  <a
+                    href="/section/computer#student"
+                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
+                  >
                     Student Resources
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
           </li>
 
           <li className="flex items-start px-4 py-2">
-            <NavLink to="/" className="flex items-center justify-center">
+            <NavLink
+              to="/articles/e8cbc468-f5ca-4ef7-ace9-25779a1bfc19"
+              className="flex items-center justify-center"
+            >
               Events
             </NavLink>
           </li>
 
           <li className="flex items-start px-4 py-2">
-            <NavLink to="/" className="flex items-center justify-center">
+            <NavLink
+              to="/articles/cabb5a58-e907-42b4-b0b9-65c95e856eab"
+              className="flex items-center justify-center"
+            >
               About Us
             </NavLink>
           </li>

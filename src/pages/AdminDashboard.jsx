@@ -3,9 +3,10 @@ import useAuth from "../features/auth/useAuth";
 import useIsLoggedIn from "../features/auth/useIsLoggedIn";
 import { Link, Outlet, useNavigation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import NavBar from "../ui/NavBar";
 const AdminDashboard = function () {
   useIsLoggedIn("ADMIN");
-  const { isAuthenticated, isLoading, error, user } = useAuth();
+  const { isAuthenticated, isLoading, user } = useAuth();
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -26,8 +27,24 @@ const AdminDashboard = function () {
       </div>
     );
 
-  if (!isAuthenticated && !isLoading)
-    return <div>{error?.message ? error.message : ""}</div>;
+  if (!isAuthenticated && !isLoading) {
+    return (
+      <div>
+        <NavBar />
+
+        <div className="flex h-[50vh] flex-col items-center justify-center">
+          <p className="text-3xl font-bold">
+            Could not log you in. Please Login again
+          </p>
+
+          <Link to="/auth/login" className="text-blue-500">
+            {" "}
+            Login
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   //   return (
   //     <div className="flex min-h-screen w-full overflow-x-hidden">

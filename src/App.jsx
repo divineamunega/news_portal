@@ -31,6 +31,7 @@ import SectionPage from "./features/section/SectionPage";
 import NewsSection from "./features/section/NewsSection";
 import CampusSection from "./features/section/CampusSection";
 import ErrorBoundary from "./ui/ErrorBoundary";
+import ComputerScienceSection from "./features/section/CompterScienceSection";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
@@ -148,6 +149,16 @@ const App = () => {
         <SectionPage
           data={{ section: "Campus Life" }}
           Component={CampusSection}
+        ></SectionPage>
+      ),
+    },
+
+    {
+      path: "/section/computer",
+      element: (
+        <SectionPage
+          data={{ section: "Computer Science" }}
+          Component={ComputerScienceSection}
         ></SectionPage>
       ),
     },
