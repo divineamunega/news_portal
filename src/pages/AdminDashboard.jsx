@@ -101,7 +101,7 @@ const AdminDashboard = function () {
         className={`fixed inset-y-0 left-0 z-10 w-64 transform bg-gray-100 p-4 transition-transform duration-300 md:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} flex-col border-r md:relative md:flex md:w-64`}
       >
         <div className="mb-6 flex flex-col gap-4">
-          <a href="#" className="flex items-center gap-2 font-semibold">
+          <a href="/" className="flex items-center gap-2 font-semibold">
             <Package2Icon className="h-6 w-6" />
             <span>ACU NEWS ADMIN PAGE</span>
           </a>

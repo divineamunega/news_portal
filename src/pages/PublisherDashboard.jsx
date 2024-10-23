@@ -72,6 +72,12 @@ const PublisherDashboard = () => {
             <span>Publishers Page</span>
           </Link>
           <p className="font-semibold">{user.name}</p>
+
+          {user.role === "ADMIN" ? (
+            <Link to="/admin" className="text-blue-500">
+              Admin Page
+            </Link>
+          ) : null}
         </div>
         <nav className="flex flex-col gap-2">
           <NavLink
