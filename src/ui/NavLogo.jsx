@@ -10,7 +10,7 @@ const NavLogo = ({ title }) => {
         <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-1 bg-black bg-opacity-65 text-center text-white">
           <p className="">Best Blog and Magazine in ACU</p>
           <p>Experience the change</p>
-          <Link to="auth" className="border-2 px-2 py-1">
+          <Link to="/auth" className="border-2 px-2 py-1">
             Join Us Now
           </Link>
         </div>
