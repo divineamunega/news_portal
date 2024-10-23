@@ -29,6 +29,8 @@ import editArticleLoader from "./features/publishers/editArticleLoader";
 import editArticleAction from "./features/publishers/editArticleAction";
 import SectionPage from "./features/section/SectionPage";
 import NewsSection from "./features/section/NewsSection";
+import CampusSection from "./features/section/CampusSection";
+import ErrorBoundary from "./ui/ErrorBoundary";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
@@ -44,6 +46,8 @@ const App = () => {
           <HomePage />,
         </Suspense>
       ),
+
+      errorElement: <ErrorBoundary />,
     },
 
     {
@@ -135,6 +139,15 @@ const App = () => {
         <SectionPage
           data={{ section: "News" }}
           Component={NewsSection}
+        ></SectionPage>
+      ),
+    },
+    {
+      path: "/section/campus",
+      element: (
+        <SectionPage
+          data={{ section: "Campus Life" }}
+          Component={CampusSection}
         ></SectionPage>
       ),
     },

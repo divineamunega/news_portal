@@ -45,7 +45,8 @@ const SectionPage = ({ Component, data }) => {
         };
       });
 
-      setNews(() => dataDate.filter(({ section }) => section === "News"));
+      setNews(dataDate);
+
       setIsLoading(false);
     };
 
