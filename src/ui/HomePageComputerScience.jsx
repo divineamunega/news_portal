@@ -36,9 +36,13 @@ const HomePageComputerScience = ({ news }) => {
                   <span className="font-extrabold">Author</span>
                   <span>{publishedAt}</span>
                 </div>
-                <p className="max-w-readable font-lora text-[0.9rem] md:text-base lg:text-xs">
-                  <ClipText limit={250}>{content}</ClipText>
-                </p>
+
+                <ClipText
+                  className="max-w-readable font-lora text-[0.9rem] md:text-base lg:text-xs"
+                  limit={250}
+                >
+                  {content}
+                </ClipText>
               </div>
             </div>
           ))}

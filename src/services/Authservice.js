@@ -48,6 +48,24 @@ export async function signupAPI(name, email, password) {
   }
 }
 
+export async function signupAdmin(name, email, password) {
+  try {
+    const object = { name, email, password };
+    const res = await fetch(`${URL}auth/signupAdmin`, {
+      method: "POST",
+      body: JSON.stringify(object),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
 export const checkAuthStatus = async (role) => {
   const response = await fetch(`${URL}auth/check`, {
     method: "GET",

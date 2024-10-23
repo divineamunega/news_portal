@@ -53,16 +53,6 @@ const NewArticle = () => {
           <div className="flex gap-5">
             <button
               type="submit"
-              name="save"
-              value="save"
-              disabled={true}
-              className="w-1/2 rounded-md border-2 border-black bg-white px-4 py-2 text-black opacity-30 transition-all duration-500 hover:bg-black hover:text-white focus:outline-none disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black"
-            >
-              Save Article
-            </button>
-
-            <button
-              type="submit"
               name="publish"
               value="publish"
               disabled={loading}

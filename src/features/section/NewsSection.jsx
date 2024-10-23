@@ -54,7 +54,7 @@ const SubSection = function ({ news, title, id }) {
 
           return (
             <Link
-              to={`articles/${id}`}
+              to={`/articles/${id}`}
               className="flex-[1_1_calc(100%-1rem)] overflow-hidden rounded shadow-lg md:flex-[1_1_calc(49%-1rem)] lg:flex-[1_1_calc(33.333%-1rem)]"
               key={id}
             >

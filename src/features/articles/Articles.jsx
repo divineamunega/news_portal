@@ -12,7 +12,6 @@ const Articles = () => {
   useIsLoggedIn("USER");
   const { isAuthenticated } = useAuth();
 
-  console.log(isAuthenticated);
   const {
     err,
     id,
@@ -25,6 +24,10 @@ const Articles = () => {
     likeId: apiLikeId,
     comments,
   } = data;
+
+  if (!isAuthenticated) {
+    localStorage.setItem("redirect", `/articles/${id}`);
+  }
 
   const responsiveImageUrl =
     err || newsImage.replace("/upload/", "/upload/w_auto,f_auto,q_auto/");
@@ -142,7 +145,7 @@ const Articles = () => {
             ) : (
               <div className="flex w-full flex-col items-center justify-center pt-10">
                 Please Log in to add comments
-                <Link to="/auth" className="text-blue-600">
+                <Link to={`/auth/login`} className="text-blue-600">
                   Login
                 </Link>
               </div>

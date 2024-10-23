@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { signupAPI } from "../../../services/Authservice";
+import { signupAdmin } from "../../services/Authservice";
 import { enqueueSnackbar } from "notistack";
 
 const action = async function ({ request }) {
@@ -9,15 +9,14 @@ const action = async function ({ request }) {
   if (!email || !password || !name) return { err: "Fill all feilds please." };
 
   try {
-    const data = await signupAPI(name, email, password);
+    const data = await signupAdmin(name, email, password);
     if (data.status === "fail") throw new Error(data.message);
 
-    enqueueSnackbar({ message: "Signed Up", variant: "success" });
-
-    const redirectStr = localStorage.getItem("redirect") || "/";
-    localStorage.clear();
-
-    return redirect(redirectStr);
+    enqueueSnackbar({
+      message: "Admin created successfully",
+      variant: "success",
+    });
+    return redirect("/admin");
   } catch (err) {
     return { err: err.message.replaceAll("Error:", "").trim() };
   }

@@ -34,7 +34,7 @@ const AdminDashboard = function () {
 
         <div className="flex h-[50vh] flex-col items-center justify-center">
           <p className="text-3xl font-bold">
-            Could not log you in. Please Login again
+            You are not allowed to access this page
           </p>
 
           <Link to="/auth/login" className="text-blue-500">
@@ -128,6 +128,14 @@ const AdminDashboard = function () {
           >
             <NewsIcon className="h-5 w-5" />
             News Management
+          </Link>
+
+          <Link
+            to="/register/admin"
+            className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900"
+          >
+            <UserIcon className="h-5 w-5" />
+            Register Admin
           </Link>
         </nav>
       </aside>

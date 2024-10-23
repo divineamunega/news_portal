@@ -69,58 +69,6 @@ const NavBar = () => {
 
             <li className={listStyle}>
               <button className="flex items-center justify-center">
-                Campus Life
-                <IoMdArrowDropdown className="-rotate-90 transition-all duration-300 group-hover:rotate-0" />
-              </button>
-              <div className="absolute left-[-10px] top-[100%] z-10 hidden text-nowrap bg-white px-4 py-6 text-left text-sm font-normal shadow-lg transition-all duration-300 group-hover:block">
-                <ul className="flex flex-col gap-5">
-                  <li>
-                    <a
-                      href="/section/campus#tour"
-                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                    >
-                      Campus Tour
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/section/campus#live"
-                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                    >
-                      Where to Live
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/section/campus#eat"
-                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                    >
-                      Where to Eat
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/section/campus#places"
-                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                    >
-                      Places to See
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="/section/campus#art"
-                      className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                    >
-                      Art and Culture
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-
-            <li className={listStyle}>
-              <button className="flex items-center justify-center">
                 Computer Science
                 <IoMdArrowDropdown className="-rotate-90 transition-all duration-300 group-hover:rotate-0" />
               </button>
@@ -163,21 +111,21 @@ const NavBar = () => {
             </li>
 
             <li className={listStyle}>
-              <NavLink
-                to="/articles/e8cbc468-f5ca-4ef7-ace9-25779a1bfc19"
+              <a
+                href="/articles/e8cbc468-f5ca-4ef7-ace9-25779a1bfc19"
                 className="flex items-center justify-center"
               >
                 Events
-              </NavLink>
+              </a>
             </li>
 
             <li className={listStyle}>
-              <NavLink
-                to="/articles/cabb5a58-e907-42b4-b0b9-65c95e856eab"
+              <a
+                href="/articles/cabb5a58-e907-42b4-b0b9-65c95e856eab"
                 className="flex items-center justify-center"
               >
                 About Us
-              </NavLink>
+              </a>
             </li>
           </ul>
 

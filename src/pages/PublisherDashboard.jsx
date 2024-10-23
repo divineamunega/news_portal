@@ -5,7 +5,6 @@ import useIsLoggedIn from "../features/auth/useIsLoggedIn";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { IoBookOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
-import { MdOutlineBookmarks } from "react-icons/md";
 
 const PublisherDashboard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -104,19 +103,6 @@ const PublisherDashboard = () => {
           >
             <FaPlus className="h-5 w-5" />
             Add new Article
-          </NavLink>
-
-          <NavLink
-            to="."
-            className={({ isActive }) =>
-              [
-                "flex cursor-not-allowed items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-200 hover:text-gray-900",
-                isActive ? "" : "",
-              ].join(" ")
-            }
-          >
-            <MdOutlineBookmarks className="h-5 w-5" />
-            Drafts
           </NavLink>
         </nav>
       </aside>

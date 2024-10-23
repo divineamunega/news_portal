@@ -32,12 +32,15 @@ import NewsSection from "./features/section/NewsSection";
 import CampusSection from "./features/section/CampusSection";
 import ErrorBoundary from "./ui/ErrorBoundary";
 import ComputerScienceSection from "./features/section/CompterScienceSection";
+import RegisterAdmin from "./features/Admin/RegisterAdmin";
+import registerAdminAction from "./features/Admin/registerAdminAction";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ArticlePage = lazy(() => import("./features/articles/ArticlesPage"));
 
 const App = () => {
   const [userId, setUserId] = useState("");
 
+  localStorage.setItem("redirect", "");
   const router = createBrowserRouter([
     {
       path: "/",
@@ -161,6 +164,12 @@ const App = () => {
           Component={ComputerScienceSection}
         ></SectionPage>
       ),
+    },
+
+    {
+      path: "/register/admin",
+      element: <RegisterAdmin />,
+      action: registerAdminAction,
     },
   ]);
 
