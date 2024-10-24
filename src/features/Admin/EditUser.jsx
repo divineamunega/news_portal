@@ -19,6 +19,9 @@ const EditUser = ({ id, setId, type }) => {
         {
           method: "PATCH",
           credentials: "include",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         },
       );
 

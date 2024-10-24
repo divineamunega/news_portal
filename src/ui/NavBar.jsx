@@ -231,69 +231,6 @@ const NavBar = () => {
               className="flex items-center justify-center"
               onClick={() => {
                 setDropDownIsOpen((num) => {
-                  return num !== 2 ? 2 : 0;
-                });
-              }}
-            >
-              Campus Life
-              <IoMdArrowDropdown
-                className={`transition-all duration-300 ${dropDownIsOpen === 2 ? "" : "-rotate-90"}`}
-              />
-            </button>
-            <div
-              className={`mt-2 max-h-0 w-full overflow-hidden text-nowrap px-0 py-0 text-left font-normal transition-all duration-500 ${dropDownIsOpen === 2 ? "max-h-fit px-4 py-8" : ""}`}
-            >
-              <ul className="flex flex-col items-center gap-5 text-xl">
-                <li>
-                  <a
-                    href="/section/campus#tour"
-                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                  >
-                    Campus Tour
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/section/campus#live"
-                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                  >
-                    Where to Live
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/section/campus#eat"
-                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                  >
-                    Where to Eat
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/section/campus#see"
-                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                  >
-                    Places to See
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    href="/section/campus#art"
-                    className="px-4 py-2 transition-all duration-200 hover:bg-darkCyan/50"
-                  >
-                    Art and Culture
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <li className="flex flex-col items-start px-4 py-2">
-            <button
-              className="flex items-center justify-center"
-              onClick={() => {
-                setDropDownIsOpen((num) => {
                   return num !== 3 ? 3 : 0;
                 });
               }}

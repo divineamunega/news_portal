@@ -20,6 +20,7 @@ const action = async function ({ request }) {
     newFormData.append("subSection", subSection);
     newFormData.append("content", content);
     newFormData.append("newsImage", newsImage);
+    newFormData.append("token", localStorage.getItem("token"));
 
     try {
       const data = await publishNews(newFormData);

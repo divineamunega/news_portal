@@ -13,6 +13,9 @@ const DeleteUser = ({ id, setId }) => {
       const res = await fetch(`${BASE_URL}users/${id}`, {
         method: "DELETE",
         credentials: "include",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
 
       if (!res.ok) throw new Error("An unexptected error occured, Try again");

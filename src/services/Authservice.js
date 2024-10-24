@@ -10,6 +10,7 @@ export async function loginAPI(email, password) {
       body: JSON.stringify(object),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       credentials: "include",
     });
@@ -32,12 +33,17 @@ export async function loginAPI(email, password) {
 
 export async function signupAPI(name, email, password) {
   try {
-    const object = { name, email, password };
+    const object = {
+      name,
+      email,
+      password,
+    };
     const res = await fetch(`${URL}auth/signup`, {
       method: "POST",
       body: JSON.stringify(object),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       credentials: "include",
     });
@@ -50,12 +56,19 @@ export async function signupAPI(name, email, password) {
 
 export async function signupAdmin(name, email, password) {
   try {
-    const object = { name, email, password };
+    const object = {
+      name,
+      email,
+      password,
+      token: localStorage.getItem("token"),
+    };
     const res = await fetch(`${URL}auth/signupAdmin`, {
       method: "POST",
       body: JSON.stringify(object),
       headers: {
         "Content-Type": "application/json",
+
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       credentials: "include",
     });
@@ -70,6 +83,9 @@ export const checkAuthStatus = async (role) => {
   const response = await fetch(`${URL}auth/check`, {
     method: "GET",
     credentials: "include",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
 
   if (!response.ok) throw new Error("Please try again");
@@ -99,7 +115,11 @@ export const checkAuthStatus = async (role) => {
 };
 
 export const registerPublisher = async function ({ name, email, password }) {
-  const object = { name, email, password };
+  const object = {
+    name,
+    email,
+    password,
+  };
   console.log(object);
 
   const response = await fetch(`${URL}auth/signupPublisher`, {
@@ -107,6 +127,7 @@ export const registerPublisher = async function ({ name, email, password }) {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify(object),
   });

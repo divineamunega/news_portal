@@ -9,6 +9,9 @@ export const getUsers = async function ({ role, limit, page }) {
       {
         method: "GET",
         credentials: "include",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       },
     );
 

@@ -15,8 +15,9 @@ const action = async function ({ request }) {
     enqueueSnackbar({ message: "Signed Up", variant: "success" });
 
     const redirectStr = localStorage.getItem("redirect") || "/";
-    localStorage.clear();
+    localStorage.setItem("redirect", "");
 
+    localStorage.setItem("token", data.data.token);
     return redirect(redirectStr);
   } catch (err) {
     return { err: err.message.replaceAll("Error:", "").trim() };

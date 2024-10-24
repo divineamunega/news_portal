@@ -11,6 +11,7 @@ const action = async function ({ request }) {
   try {
     const data = await loginAPI(email, password);
 
+    localStorage.setItem("token", data.data.token);
     if (data.data.user.role === "ADMIN") {
       return redirect("/admin");
     }
@@ -22,7 +23,7 @@ const action = async function ({ request }) {
     enqueueSnackbar({ message: "Logged In", variant: "success" });
 
     const redirectStr = localStorage.getItem("redirect") || "/";
-    localStorage.clear();
+    localStorage.setItem("redirect", "");
 
     return redirect(redirectStr);
   } catch (err) {

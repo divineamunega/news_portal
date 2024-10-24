@@ -6,6 +6,9 @@ const getNews = async function () {
   const res = await fetch(`${URL}/publisher`, {
     method: "GET",
     credentials: "include",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
 
   if (!res.ok) throw new Error("Unexpected Error Please try again.");
@@ -19,6 +22,9 @@ const publishNews = async function (object) {
     method: "POST",
     credentials: "include",
     body: object,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   const data = await res.json();
   return data;
@@ -26,7 +32,12 @@ const publishNews = async function (object) {
 
 const getNewsById = async function (id, userId) {
   const url = `${URL}/${id}${userId ? `?userId=${userId}` : ""}`;
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    method: "GET",
+  });
 
   const data = await res.json();
 
@@ -37,6 +48,9 @@ const likeNews = async function (newsId) {
   const res = await fetch(`${URL}/like/${newsId}`, {
     method: "POST",
     credentials: "include",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   const data = await res.json();
 
@@ -49,6 +63,9 @@ const unlikeNews = async function (likeId) {
   const res = await fetch(`${URL}/unlike/${likeId}`, {
     method: "POST",
     credentials: "include",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
 
   if (res.status !== 200)
@@ -66,6 +83,8 @@ const comment = async function (newsId, data) {
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
+
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 
@@ -107,6 +126,10 @@ const deleteNews = async function (id) {
   const res = await fetch(`${URL}/delete/${id}`, {
     method: "DELETE",
     credentials: "include",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify({ token: localStorage.getItem("token") }),
   });
 
   const data = await res.json();
@@ -121,6 +144,9 @@ const editArticle = async function (id, object) {
     method: "PUT",
     credentials: "include",
     body: object,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   const data = await res.json();
   console.log(data);

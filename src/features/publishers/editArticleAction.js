@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-import { editArticle, publishNews } from "../../services/NewsService";
+import { editArticle } from "../../services/NewsService";
 
 const action = async function ({ request, params }) {
   const formData = await request.formData();
@@ -22,6 +22,7 @@ const action = async function ({ request, params }) {
     newFormData.append("subSection", subSection);
     newFormData.append("content", content);
     newFormData.append("newsImage", newsImage);
+    newFormData.append("token", localStorage.getItem("token"));
 
     try {
       const data = await editArticle(id, newFormData);
